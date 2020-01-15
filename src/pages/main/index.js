@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivors } from '../../model/survivor';
+import Table from '../../components/table'
 
 export default class Main extends Component {
   state = {
@@ -20,13 +21,11 @@ export default class Main extends Component {
   }
 
   render() {
+    const { survivors } = this.state;
+
     return (
       <div>
-        {this.state.survivors.map(survivor => 
-          <li key={survivor.location}>
-            {survivor.name}
-          </li>
-        )}
+          <Table survivors={survivors} />
       </div>
     );
   }
