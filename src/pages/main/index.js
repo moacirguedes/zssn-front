@@ -24,7 +24,7 @@ export default class Main extends Component {
     const { survivors } = this.state;
 
     return (
-      <div>
+      <div className="MainDiv">
           <Table survivors={survivors} />
       </div>
     );

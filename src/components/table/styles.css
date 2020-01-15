@@ -1,14 +1,13 @@
 .Table {
   border-collapse: collapse;
-  width: 75%;
 }
 
 .Table__header {
   border: 1px solid black;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
 .Table__header-item{
-  background-color: gainsboro;
+  background-color: gray;
 }
