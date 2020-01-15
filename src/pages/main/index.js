@@ -25,7 +25,10 @@ export default class Main extends Component {
 
     return (
       <div className="MainDiv">
+        {survivors.length === 0 ?
+          <div className="Loader"></div> :
           <Table survivors={survivors} />
+        }
       </div>
     );
   }
