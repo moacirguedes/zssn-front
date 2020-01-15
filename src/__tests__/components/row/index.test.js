@@ -5,27 +5,57 @@ import faker from 'faker';
 
 describe('<Row />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<Row survivor={{}}/>)
+    const wrapper = shallow(<Row survivor={{}} />)
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render with survivors attributes', () => {
-    const props = {
-      name: faker.name.findName(),
-      age: faker.random.number(70).toString(),
-      gender: Math.random() > 0.5 ? 'F' : 'M',
-      lonlat: '',
-      infected: "False"
-    }
+  describe('render with correct values', () => {
+    let props;
     
-    const wrapper = shallow(<Row survivor={props}/>);
-    const tdsText = wrapper.find('td').map(td => td.text());
+    beforeEach(() => {
+      props = {
+        name: faker.name.findName(),
+        age: faker.random.number(70).toString(),
+        gender: Math.random() > 0.5 ? 'F' : 'M',
+        lonlat: '',
+        infected: "False"
+      }
+    });
 
-    expect(tdsText[0]).toBe(props.name);
-    expect(tdsText[1]).toBe(props.age);
-    expect(tdsText[2]).toBe(props.gender);
-    expect(tdsText[3]).toBe(props.lonlat);
-    expect(tdsText[4]).toBe(props.infected);
+    it('should show name value', () => {
+      const wrapper = shallow(<Row survivor={props} />);
+      const tdText = wrapper.find('td').at(0).text();
+      
+      expect(tdText).toBe(props.name);
+    });
+
+    it('should show age value', () => {
+      const wrapper = shallow(<Row survivor={props} />);
+      const tdText = wrapper.find('td').at(1).text();
+      
+      expect(tdText).toBe(props.age);
+    });
+
+    it('should show gender value', () => {
+      const wrapper = shallow(<Row survivor={props} />);
+      const tdText = wrapper.find('td').at(2).text();
+      
+      expect(tdText).toBe(props.gender);
+    });
+
+    it('should show age value', () => {
+      const wrapper = shallow(<Row survivor={props} />);
+      const tdText = wrapper.find('td').at(3).text();
+      
+      expect(tdText).toBe(props.lonlat);
+    });
+
+    it('should show infected value', () => {
+      const wrapper = shallow(<Row survivor={props} />);
+      const tdText = wrapper.find('td').at(4).text();
+      
+      expect(tdText).toBe(props.infected);
+    });
   });
 });
