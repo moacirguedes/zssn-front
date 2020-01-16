@@ -9,10 +9,10 @@ const Row = (props) =>
     }
   >
     <td className="Table__cell">{props.survivor['name']}</td>
-    <td className="Table__cell-center">{props.survivor['age']}</td>
-    <td className="Table__cell-center">{props.survivor['gender']}</td>
+    <td className="Table__cell Center">{props.survivor['age']}</td>
+    <td className="Table__cell Center">{props.survivor['gender']}</td>
     <td className="Table__cell">{props.survivor['lonlat']}</td>
-    <td className="Table__cell-center">
+    <td className="Table__cell Center">
       {props.survivor['infected?'] ? 'True' : 'False'}
     </td>
   </tr>
