@@ -20,13 +20,11 @@ export const postSurvivor = async (survivor) => {
       items: `water:${survivor.water},food:${survivor.food},medication:${survivor.medication},ammunition:${survivor.ammunition}`
     });
 
-    const { data } = await api.post('people', params, {
+    await api.post('people', params, {
       headers: {
         'Content-Type': 'application/json',
       }
     });
-
-    return data;
   }
   catch (error) {
     alert(JSON.stringify(error.response.data));

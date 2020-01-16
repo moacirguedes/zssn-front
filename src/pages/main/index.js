@@ -24,7 +24,7 @@ export default class Main extends Component {
     const { survivors } = this.state;
 
     return (
-      <div className="MainDiv">
+      <div className="SurvivorsIndex">
         {survivors.length === 0 ?
           <div className="Loader"></div> :
           <Table survivors={survivors} />

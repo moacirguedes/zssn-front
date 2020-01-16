@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.css';
 import { postSurvivor } from '../../model/survivor';
 
-const NewSurvivor = () => {
-  const [state, setState] = React.useState({
+export default class NewSurvivor extends Component {
+  state = {
     name: '',
     age: '',
     gender: '',
@@ -12,121 +12,130 @@ const NewSurvivor = () => {
     food: '',
     medication: '',
     ammunition: ''
-  });
+  }
 
-  const handleChange = event => {
+  componentDidMount() {
+    this.setState({
+      gender: 'F'
+    });
+  }
+
+  handleChange = event => {
     const { name, value } = event.target;
 
-    setState({
-      ...state,
+    this.setState({
       [name]: value
     });
   }
 
-  const handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
 
-    const data = await postSurvivor(state);
+    await postSurvivor(this.state);
+
+    alert('Survivor created');
   }
 
-  return (
-    <div className="NewSurvivorDiv">
-      <div className="Box">
-        <form
-          className="Form"
-          onSubmit={event => handleSubmit(event)}
-        >
-          <input
-            placeholder="Name"
-            required
-            name="name"
-            value={state.name}
-            onChange={handleChange}
-          />
+  render() {
+    const { name, age, gender, lonlat, water, food, medication, ammunition } = this.state;
 
-          <div className="LineInputs">
+    return (
+      <div className="NewSurvivorDiv">
+        <div className="Box">
+          <form
+            className="Form"
+            onSubmit={this.handleSubmit}
+          >
             <input
-              className="Input__Small"
-              placeholder="Age"
-              type="number"
-              min="2"
-              max="100"
+              placeholder="Name"
               required
-              value={state.age}
-              onChange={handleChange}
-              name="age"
+              name="name"
+              value={name}
+              onChange={this.handleChange}
             />
 
-            <select
-              className="Input__Small"
-              value={state.gender}
-              onChange={handleChange}
-              name="gender"
-            >
-              <option value="F">Female</option>
-              <option value="M">Male</option>
-            </select>
+            <div className="LineInputs">
+              <input
+                className="Input__Small"
+                placeholder="Age"
+                type="number"
+                min="2"
+                max="100"
+                required
+                value={age}
+                onChange={this.handleChange}
+                name="age"
+              />
 
-            <input
-              placeholder="Location"
-              value={state.lonlat}
-              onChange={handleChange}
-              name="lonlat"
-              className="Input__Medium"
-            />
-          </div>
+              <select
+                className="Input__Small"
+                value={gender}
+                onChange={this.handleChange}
+                name="gender"
+              >
+                <option value="F">Female</option>
+                <option value="M">Male</option>
+              </select>
 
-          <div className="LineInputs">
-            <input
-              className="Input__Small"
-              placeholder="Water"
-              type="number"
-              min="0"
-              required
-              value={state.water}
-              onChange={handleChange}
-              name="water"
-            />
+              <input
+                placeholder="Location"
+                value={lonlat}
+                onChange={this.handleChange}
+                name="lonlat"
+                className="Input__Medium"
+              />
+            </div>
 
-            <input
-              className="Input__Small"
-              placeholder="Food"
-              type="number"
-              min="0"
-              required
-              value={state.food}
-              onChange={handleChange}
-              name="food"
-            />
+            <div className="LineInputs">
+              <input
+                className="Input__Small"
+                placeholder="Water"
+                type="number"
+                min="0"
+                required
+                value={water}
+                onChange={this.handleChange}
+                name="water"
+              />
 
-            <input
-              className="Input__Small"
-              placeholder="Medication"
-              type="number"
-              min="0"
-              required
-              value={state.medication}
-              onChange={handleChange}
-              name="medication"
-            />
+              <input
+                className="Input__Small"
+                placeholder="Food"
+                type="number"
+                min="0"
+                required
+                value={food}
+                onChange={this.handleChange}
+                name="food"
+              />
 
-            <input
-              className="Input__Small"
-              placeholder="Ammunition"
-              type="number"
-              min="0"
-              required
-              value={state.ammunition}
-              onChange={handleChange}
-              name="ammunition"
-            />
-          </div>
+              <input
+                className="Input__Small"
+                placeholder="Medication"
+                type="number"
+                min="0"
+                required
+                value={medication}
+                onChange={this.handleChange}
+                name="medication"
+              />
 
-          <button>Create</button>
-        </form>
+              <input
+                className="Input__Small"
+                placeholder="Ammunition"
+                type="number"
+                min="0"
+                required
+                value={ammunition}
+                onChange={this.handleChange}
+                name="ammunition"
+              />
+            </div>
+
+            <button>Create</button>
+          </form>
+        </div>
       </div>
-    </div>
-  )
+    );
+  }
 }
-
-export default NewSurvivor;
