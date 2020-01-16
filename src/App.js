@@ -1,12 +1,12 @@
 import React from 'react';
-import Main from './pages/main';
 import Header from './components/header';
+import Routes from './routes';
 
 function App() {
   return (
     <div>
       <Header />
-      <Main />
+      <Routes />
     </div>
   );
 }
