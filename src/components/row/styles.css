@@ -1,0 +1,19 @@
+.Table__cell {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+.Table__cell-center {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+
+.Table__row-infected {
+  background-color: rgb(255, 160, 160);
+}
+
+.Table__row-noninfected {
+  background-color: #f6f6f6;
+}
