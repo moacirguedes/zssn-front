@@ -9,9 +9,14 @@
   color: white;
 }
 
-.Buttons {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.NavigationDiv {
+  margin-top: 20px;
+}
+
+.NavigationLink {
+  text-decoration: none;
+  padding: 5px;
+  color: white;
+  border: 1px solid black;
+  border-radius: 20px;
 }
