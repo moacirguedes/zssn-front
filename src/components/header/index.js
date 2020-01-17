@@ -6,9 +6,9 @@ const Header = () =>
   <header className="Header">
     <h1>Zombie Survival Social Network</h1>
 
-    <div className="NavigationDiv">
-      <Link className="NavigationLink" to="/">SURVIVOR LIST</Link>
-      <Link className="NavigationLink" to="/create">CREATE SURVIVOR</Link>
+    <div className="Header__wrapper">
+      <Link className="Header__link" to="/">SURVIVOR LIST</Link>
+      <Link className="Header__link" to="/create">CREATE SURVIVOR</Link>
     </div>
   </header>
 

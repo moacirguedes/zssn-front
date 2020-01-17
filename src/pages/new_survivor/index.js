@@ -1,62 +1,55 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles.css';
 import { postSurvivor } from '../../model/survivor';
 import Form from '../../components/form';
 
-export default class NewSurvivor extends Component {
-  state = {
+const NewSurvivor = () => {
+  const [state, setState] = React.useState({
     name: '',
     age: '',
-    gender: '',
+    gender: 'F',
     lonlat: '',
     water: '',
     food: '',
     medication: '',
     ammunition: ''
-  }
+  });
 
-  componentDidMount() {
-    this.setState({
-      gender: 'F'
-    });
-  }
-
-  handleChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target;
 
-    this.setState({
+    setState({
+      ...state,
       [name]: value
     });
   }
 
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    await postSurvivor(this.state);
+    await postSurvivor(state);
 
     alert('Survivor created');
   }
 
-  render() {
-    const { name, age, gender, lonlat, water, food, ammunition, medication } = this.state
-
-    return (
-      <div className="NewSurvivorDiv">
-        <div className="Box">
-          <Form
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            name={name}
-            age={age}
-            gender={gender}
-            lonlat={lonlat}
-            water={water}
-            food={food}
-            ammunition={ammunition}
-            medication={medication}
-          />
-        </div>
+  return (
+    <div className="NewSurvivorDiv">
+      <div className="Box">
+        <Form
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          name={state.name}
+          age={state.age}
+          gender={state.gender}
+          lonlat={state.lonlat}
+          water={state.water}
+          food={state.food}
+          ammunition={state.ammunition}
+          medication={state.medication}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default NewSurvivor;
