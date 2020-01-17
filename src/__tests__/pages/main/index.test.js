@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Main from '../../../pages/main';
+import sinon from 'sinon';
 
 describe('<Main/>', () => {
   it('should render correctly', () => {
@@ -10,9 +11,11 @@ describe('<Main/>', () => {
   });
 
   it('should load survivors', () => {
-    const mockComponentDidMount = jest.spyOn(Main.prototype, 'componentDidMount');
+    const mockComponentDidMount = jest.spyOn(Main.prototype, 'loadSurvivors');
     shallow(<Main />);
 
     expect(mockComponentDidMount).toHaveBeenCalled();
   });
+
+
 });

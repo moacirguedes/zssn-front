@@ -12,7 +12,7 @@ export default class Main extends Component {
     this.loadSurvivors();
   }
 
-  loadSurvivors = async () => {
+  async loadSurvivors() {
     const data = await getSurvivors();
 
     this.setState({
