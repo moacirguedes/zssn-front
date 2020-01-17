@@ -1,0 +1,21 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  padding: 0px 20px 0px 20px;
+}
+
+.LineInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Input__Small {
+  width: 20%;
+}
+
+.Input__Medium {
+  width: 47%;
+}

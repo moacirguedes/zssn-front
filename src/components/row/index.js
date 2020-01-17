@@ -1,19 +1,19 @@
 import React from 'react';
 import './styles.css';
 
-const Row = (props) =>
+const Row = ({survivor}) =>
   <tr className=
-    {props.survivor['infected?'] ?
+    {survivor['infected?'] ?
       'Table__row-infected' :
       'Table__row-noninfected'
     }
   >
-    <td className="Table__cell">{props.survivor['name']}</td>
-    <td className="Table__cell-center">{props.survivor['age']}</td>
-    <td className="Table__cell-center">{props.survivor['gender']}</td>
-    <td className="Table__cell">{props.survivor['lonlat']}</td>
-    <td className="Table__cell-center">
-      {props.survivor['infected?'] ? 'True' : 'False'}
+    <td className="Table__cell">{survivor['name']}</td>
+    <td className="Table__cell Center">{survivor['age']}</td>
+    <td className="Table__cell Center">{survivor['gender']}</td>
+    <td className="Table__cell">{survivor['lonlat']}</td>
+    <td className="Table__cell Center">
+      {survivor['infected?'] ? 'True' : 'False'}
     </td>
   </tr>
 

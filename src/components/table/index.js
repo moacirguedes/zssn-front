@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import Row from '../row';
 
-const Table = (props) =>
+const Table = ({survivors}) =>
   <table className="Table">
     <thead>
       <tr className="Table__header-item">
@@ -25,7 +25,7 @@ const Table = (props) =>
     </thead>
 
     <tbody>
-      {props.survivors.map(survivor =>
+      {survivors.map(survivor =>
         <Row
           key={survivor.location}
           survivor={survivor}
