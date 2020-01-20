@@ -5,13 +5,14 @@ import faker from 'faker';
 
 describe('<Row />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<Row survivor={{}} />)
+    const wrapper = shallow(<Row survivor={{location: ''}} />)
 
     expect(wrapper).toMatchSnapshot();
   });
 
   describe('render with correct values', () => {
     const survivorFactory = props => ({
+      location: faker.random.word(),
       name: faker.name.findName(),
       age: faker.random.number(70).toString(),
       gender: Math.random() > 0.5 ? 'F' : 'M',
