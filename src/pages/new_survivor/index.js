@@ -34,7 +34,7 @@ const NewSurvivor = () => {
 
   return (
     <div className="NewSurvivorDiv">
-      <div className="Box">
+      <div className="NewSurvivorBox">
         <Form
           handleSubmit={handleSubmit}
           handleChange={handleChange}

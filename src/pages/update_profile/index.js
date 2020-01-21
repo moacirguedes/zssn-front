@@ -44,9 +44,9 @@ export default class UpdateProfile extends Component {
     const { survivor } = this.state;
 
     return (
-      <div className="Div">
-        <div className="Box">
-          <form className="UpdateForm" onSubmit={this.handleSubmit}>
+      <div className="UpdateProfileDiv">
+        <div className="UpdateProfileBox">
+          <form className="UpdateProfileForm" onSubmit={this.handleSubmit}>
             <input 
               placeholder="Name"
               type="text"
@@ -57,7 +57,7 @@ export default class UpdateProfile extends Component {
 
             <div className="LineInputs">
               <input
-                className="Input__Small"
+                className="UpdateInput__Small"
                 placeholder="Age"
                 type="number"
                 min="2"
@@ -69,7 +69,7 @@ export default class UpdateProfile extends Component {
               />
 
               <select
-                className="Input__Small"
+                className="UpdateInput__Small"
                 value={survivor.gender}
                 onChange={this.handleChange}
                 name="gender"

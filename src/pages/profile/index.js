@@ -38,7 +38,7 @@ export default class Profile extends Component {
 
     return (
       <div className="ProfileDiv">
-        <div className="Box">
+        <div className="ProfileBox">
           <div className="Labels">
             <h2 className="capitalize"><bold>{survivor.name}</bold></h2>
             <label>Age: {survivor.age}</label>
