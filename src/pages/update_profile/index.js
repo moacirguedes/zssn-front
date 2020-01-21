@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, updateSurvivor } from '../../model/survivor';
+import FormUpdate from '../../components/form_update';
 
 export default class UpdateProfile extends Component {
   state = {
-    survivor: ''
+    name: '',
+    gender: '',
+    age: '',
+    lonlat: ''
   }
 
   componentDidMount() {
@@ -14,10 +18,8 @@ export default class UpdateProfile extends Component {
   handleChange = event => {
     const { name, value } = event.target;
 
-    this.setState(prevState => {
-      let survivor = prevState.survivor;
-      survivor[name] = value;
-      return { survivor };
+    this.setState({
+      [name]: value
     });
   }
 
@@ -28,7 +30,10 @@ export default class UpdateProfile extends Component {
     const { survivor } = this.state;
     const response = await updateSurvivor(id, survivor);
 
-    if (response.status === 200) { alert('Profile updated') }
+    if (response.status === 200) { 
+      alert('Profile updated');
+      this.props.history.goBack();
+    }
   }
 
   async loadSurvivor() {
@@ -38,7 +43,10 @@ export default class UpdateProfile extends Component {
 
     if (response.status === 200) {
       this.setState({
-        survivor: response.data
+        name: response.data.name,
+        age: response.data.age,
+        gender: response.data.gender,
+        lonlat: response.data.lonlat
       });
     }
     else {
@@ -47,53 +55,19 @@ export default class UpdateProfile extends Component {
   }
 
   render() {
-    const { survivor } = this.state;
+    const { name, gender, age, lonlat } = this.state;
 
     return (
       <div className="UpdateProfileDiv">
         <div className="UpdateProfileBox">
-          <form className="UpdateProfileForm" onSubmit={this.handleSubmit}>
-            <input
-              placeholder="Name"
-              type="text"
-              value={survivor.name}
-              name="name"
-              onChange={this.handleChange}
-            />
-
-            <div className="LineInputs">
-              <input
-                className="UpdateInput__Small"
-                placeholder="Age"
-                type="number"
-                min="2"
-                max="100"
-                required
-                value={survivor.age}
-                onChange={this.handleChange}
-                name="age"
-              />
-
-              <select
-                className="UpdateInput__Small"
-                value={survivor.gender}
-                onChange={this.handleChange}
-                name="gender"
-              >
-                <option value="F">Female</option>
-                <option value="M">Male</option>
-              </select>
-            </div>
-
-            <input
-              placeholder="Location (Example: POINT (-1.0 1.0) )"
-              name="lonlat"
-              value={survivor.lonlat}
-              onChange={this.handleChange}
-            />
-
-            <button>Update</button>
-          </form>
+          <FormUpdate
+            name={name}
+            age={age}
+            gender={gender}
+            lonlat={lonlat}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
         </div>
       </div>
     );
