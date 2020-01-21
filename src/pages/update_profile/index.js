@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
-import { getSurvivor } from '../../model/survivor';
+import { getSurvivor, updateSurvivor } from '../../model/survivor';
 
 export default class UpdateProfile extends Component {
   state = {
@@ -21,6 +21,15 @@ export default class UpdateProfile extends Component {
     });
   }
 
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { id } = this.props.match.params;
+    const { survivor } = this.state;
+
+    await updateSurvivor(id, survivor);
+  }
+
   async loadSurvivor() {
     const { id } = this.props.match.params;
 
@@ -37,7 +46,7 @@ export default class UpdateProfile extends Component {
     return (
       <div className="Div">
         <div className="Box">
-          <form className="Form">
+          <form className="UpdateForm" onSubmit={this.handleSubmit}>
             <input 
               placeholder="Name"
               type="text"

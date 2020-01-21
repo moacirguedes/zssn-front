@@ -48,3 +48,24 @@ export const postSurvivor = async (survivor) => {
     alert(JSON.stringify(error.response.data));
   }
 }
+
+export const updateSurvivor = async (id, survivor) => {
+  try {
+    const params = JSON.stringify({
+      name: survivor.name,
+      age: survivor.age,
+      gender: survivor.gender,
+      lonlat: survivor.lonlat
+    });
+    
+    return await api.patch(`people/${id}`, params,  {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+  catch (error) {
+    alert('something went wrong, try again');
+    console.log(error);
+  }
+}
