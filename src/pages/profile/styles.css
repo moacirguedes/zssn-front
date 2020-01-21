@@ -22,3 +22,7 @@
 .capitalize {
   text-transform: capitalize;
 }
+
+.UpdateButton {
+  width: 100%;
+}

@@ -1,0 +1,16 @@
+.UpdateProfileForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.LineInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.UpdateInput__Small {
+  width: 35%;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, getInventory } from '../../model/survivor';
+import { Link } from 'react-router-dom';
 
 export default class Profile extends Component {
   state = {
@@ -23,7 +24,7 @@ export default class Profile extends Component {
         survivor: response.data
       });
     }
-    else{
+    else {
       this.props.history.goBack();
     }
   }
@@ -38,6 +39,12 @@ export default class Profile extends Component {
         inventory: response.data
       });
     }
+  }
+
+  handleUpdateButton = () => {
+    const { id } = this.props.match.params;
+
+    return `/profile/${id}/update`;
   }
 
   render() {
@@ -57,6 +64,10 @@ export default class Profile extends Component {
                 <label key={item.location}>{item.item.name}: {item.quantity}</label>
               )
             }
+
+            <Link to={this.handleUpdateButton}>
+              <button className="UpdateButton">Update</button>
+            </Link>
           </div>
         </div>
       </div>

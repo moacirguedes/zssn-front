@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, updateSurvivor } from '../../model/survivor';
+import FormUpdate from '../../components/form_update';
 
 export default class UpdateProfile extends Component {
   state = {
@@ -28,7 +29,10 @@ export default class UpdateProfile extends Component {
     const { survivor } = this.state;
     const response = await updateSurvivor(id, survivor);
 
-    if (response.status === 200) { alert('Profile updated') }
+    if (response.status === 200) { 
+      alert('Profile updated');
+      this.props.history.goBack();
+    }
   }
 
   async loadSurvivor() {
@@ -52,48 +56,11 @@ export default class UpdateProfile extends Component {
     return (
       <div className="UpdateProfileDiv">
         <div className="UpdateProfileBox">
-          <form className="UpdateProfileForm" onSubmit={this.handleSubmit}>
-            <input
-              placeholder="Name"
-              type="text"
-              value={survivor.name}
-              name="name"
-              onChange={this.handleChange}
-            />
-
-            <div className="LineInputs">
-              <input
-                className="UpdateInput__Small"
-                placeholder="Age"
-                type="number"
-                min="2"
-                max="100"
-                required
-                value={survivor.age}
-                onChange={this.handleChange}
-                name="age"
-              />
-
-              <select
-                className="UpdateInput__Small"
-                value={survivor.gender}
-                onChange={this.handleChange}
-                name="gender"
-              >
-                <option value="F">Female</option>
-                <option value="M">Male</option>
-              </select>
-            </div>
-
-            <input
-              placeholder="Location (Example: POINT (-1.0 1.0) )"
-              name="lonlat"
-              value={survivor.lonlat}
-              onChange={this.handleChange}
-            />
-
-            <button>Update</button>
-          </form>
+          <FormUpdate
+            survivor={survivor}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
         </div>
       </div>
     );
