@@ -7,6 +7,7 @@ export const getSurvivors = async () => {
   }
   catch (error) {
     console.log(error);
+    return error.response;
   }
 }
 
@@ -15,7 +16,8 @@ export const getSurvivor = async (id) => {
     return await api.get(`people/${id}`);
   }
   catch (error) {
-    console.log(error);
+    alert('Survivor not found');
+    return error.response;
   }
 }
 
@@ -25,6 +27,7 @@ export const getInventory = async (id) => {
   }
   catch (error) {
     console.log(error);
+    return error.response;
   }
 }
 
@@ -38,7 +41,7 @@ export const postSurvivor = async (survivor) => {
       items: `water:${survivor.water},food:${survivor.food},medication:${survivor.medication},ammunition:${survivor.ammunition}`
     });
 
-    await api.post('people', params, {
+    return await api.post('people', params, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -46,6 +49,7 @@ export const postSurvivor = async (survivor) => {
   }
   catch (error) {
     alert(JSON.stringify(error.response.data));
+    return error.response;
   }
 }
 
@@ -66,6 +70,6 @@ export const updateSurvivor = async (id, survivor) => {
   }
   catch (error) {
     alert('something went wrong, try again');
-    console.log(error);
+    return error.response;
   }
 }

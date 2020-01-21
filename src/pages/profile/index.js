@@ -16,21 +16,28 @@ export default class Profile extends Component {
   async loadSurvivor() {
     const { id } = this.props.match.params;
 
-    const { data } = await getSurvivor(id);
+    const response = await getSurvivor(id);
 
-    this.setState({
-      survivor: data
-    });
+    if (response.status === 200) {
+      this.setState({
+        survivor: response.data
+      });
+    }
+    else{
+      this.props.history.goBack();
+    }
   }
 
   async loadInventory() {
     const { id } = this.props.match.params;
 
-    const { data } = await getInventory(id);
+    const response = await getInventory(id);
 
-    this.setState({
-      inventory: data
-    });
+    if (response.status === 200) {
+      this.setState({
+        inventory: response.data
+      });
+    }
   }
 
   render() {

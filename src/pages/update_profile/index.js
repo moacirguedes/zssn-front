@@ -26,18 +26,24 @@ export default class UpdateProfile extends Component {
 
     const { id } = this.props.match.params;
     const { survivor } = this.state;
+    const response = await updateSurvivor(id, survivor);
 
-    await updateSurvivor(id, survivor);
+    if (response.status === 200) { alert('Profile updated') }
   }
 
   async loadSurvivor() {
     const { id } = this.props.match.params;
 
-    const { data } = await getSurvivor(id);
+    const response = await getSurvivor(id);
 
-    this.setState({
-      survivor: data
-    });
+    if (response.status === 200) {
+      this.setState({
+        survivor: response.data
+      });
+    }
+    else {
+      this.props.history.goBack();
+    }
   }
 
   render() {
@@ -47,7 +53,7 @@ export default class UpdateProfile extends Component {
       <div className="UpdateProfileDiv">
         <div className="UpdateProfileBox">
           <form className="UpdateProfileForm" onSubmit={this.handleSubmit}>
-            <input 
+            <input
               placeholder="Name"
               type="text"
               value={survivor.name}
