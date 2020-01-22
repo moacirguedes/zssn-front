@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'http://zssn-backend-example.herokuapp.com/api/'
 });
 
-export default api;
+export const StatusCode = {
+  OK_STATUS: 200,
+  CREATED_STATUS: 201,
+  NOT_FOUND_STATUS: 404
+}

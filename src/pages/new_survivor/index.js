@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import { postSurvivor } from '../../model/survivor';
 import Form from '../../components/form';
+import { StatusCode } from '../../services/httpService';
 
 const NewSurvivor = () => {
   const [state, setState] = React.useState({
@@ -29,7 +30,7 @@ const NewSurvivor = () => {
 
     const response = await postSurvivor(state);
 
-    if (response.status === 201) { alert('Survivor created') }
+    if (response.status === StatusCode.CREATED_STATUS) alert('Survivor created');
   }
 
   return (
