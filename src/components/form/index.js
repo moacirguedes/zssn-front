@@ -74,7 +74,6 @@ const Form = (props) =>
           name="water"
         />
 
-        <br />
         <label className="CreateLabel">Food</label>
         <br />
 
@@ -103,7 +102,6 @@ const Form = (props) =>
           name="medication"
         />
 
-        <br />
         <label className="CreateLabel">Ammunition</label>
         <br />
 

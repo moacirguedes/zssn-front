@@ -4,40 +4,48 @@ import './styles.css';
 const FormUpdate = (props) =>
 
   <form className="UpdateProfileForm" onSubmit={props.handleSubmit}>
+    <label className="UpdateLabel">Name</label>
     <input
-      placeholder="Name"
       type="text"
       value={props.name}
       name="name"
       onChange={props.handleChange}
     />
 
-    <div className="LineInputs">
-      <input
-        className="UpdateInput__Small"
-        placeholder="Age"
-        type="number"
-        min="2"
-        max="100"
-        required
-        value={props.age}
-        onChange={props.handleChange}
-        name="age"
-      />
+    <div className="UpdateLineInputs">
+      <div className="UpdateLabelInputDiv">
+        <label className="UpdateLabel">Age</label>
+        <br />
+        <input
+          className="UpdateInput"
+          type="number"
+          min="2"
+          max="100"
+          required
+          value={props.age}
+          onChange={props.handleChange}
+          name="age"
+        />
+      </div>
 
-      <select
-        className="UpdateInput__Small"
-        value={props.gender}
-        onChange={props.handleChange}
-        name="gender"
-      >
-        <option value="F">Female</option>
-        <option value="M">Male</option>
-      </select>
+      <div className="UpdateLabelInputDiv">
+        <label className="UpdateLabel">Gender</label>
+        <br />
+        <select
+          className="UpdateInput"
+          value={props.gender}
+          onChange={props.handleChange}
+          name="gender"
+        >
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+        </select>
+      </div>
     </div>
 
+    <label className="UpdateLabel">Location</label>
     <input
-      placeholder="Location (Example: POINT (-1.0 1.0) )"
+      placeholder="POINT (-1.0 1.0)"
       name="lonlat"
       value={props.lonlat}
       onChange={props.handleChange}

@@ -5,12 +5,24 @@
   justify-content: space-evenly;
 }
 
-.LineInputs {
+.UpdateLineInputs {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 55px;
 }
 
-.UpdateInput__Small {
-  width: 35%;
+.UpdateInput {
+  width: 100%;
+}
+
+.UpdateLabel {
+  margin-bottom: -10px;
+}
+
+.UpdateLabelInputDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 45%;
 }
