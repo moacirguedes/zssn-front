@@ -17,7 +17,6 @@ const Form = (props) =>
     <div className="LineInputs">
       <div class="LabelInputDiv">
         <label className="CreateLabel">Age</label>
-        <br />
 
         <input
           className="CreateSurvivorInput"
@@ -33,7 +32,6 @@ const Form = (props) =>
 
       <div class="LabelInputDiv">
         <label className="CreateLabel">Gender</label>
-        <br />
 
         <select
           className="CreateSurvivorInput"
@@ -48,7 +46,6 @@ const Form = (props) =>
 
       <div class="LabelInputDiv">
         <label className="CreateLabel">Location</label>
-        <br />
 
         <input
           value={props.lonlat}

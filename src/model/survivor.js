@@ -6,7 +6,7 @@ export const getSurvivors = async () => {
     return data;
   }
   catch (error) {
-    console.log(error.response);
+    console.error(error.response);
     alert('Failed to load survivors');
     return error.response;
   }
@@ -17,7 +17,7 @@ export const getSurvivor = async (id) => {
     return await api.get(`people/${id}`);
   }
   catch (error) {
-    console.log(error.response);
+    console.error(error.response);
     alert('Survivor not found');
     return error.response;
   }
@@ -28,7 +28,7 @@ export const getInventory = async (id) => {
     return await api.get(`people/${id}/properties`);
   }
   catch (error) {
-    console.log(error.response);
+    console.error(error.response);
     return error.response;
   }
 }
@@ -50,14 +50,13 @@ export const postSurvivor = async (survivor) => {
     });
   }
   catch (error) {
-    console.log(error.response);
+    console.error(error.response);
     alert(JSON.stringify(error.response.data));
     return error.response;
   }
 }
 
 export const updateSurvivor = async (id, survivor) => {
-  console.log(survivor);
   try {
     const params = JSON.stringify({
       name: survivor.name,
@@ -65,16 +64,35 @@ export const updateSurvivor = async (id, survivor) => {
       gender: survivor.gender,
       lonlat: survivor.lonlat
     });
-    
-    return await api.patch(`people/${id}`, params,  {
+
+    return await api.patch(`people/${id}`, params, {
       headers: {
         'Content-Type': 'application/json',
       }
     });
   }
   catch (error) {
-    console.log(error.response);
+    console.error(error.response);
     alert('something went wrong, try again');
+    return error.response;
+  }
+}
+
+export const reportInfected = async (id, survivor) => {
+  try {
+    const params = JSON.stringify({
+      infected: survivor
+    });
+
+    return await api.post(`/people/${id}/report_infection`, params, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+  catch (error) {
+    console.error(error.response);
+    alert('Failed to report');
     return error.response;
   }
 }
