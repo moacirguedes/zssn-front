@@ -95,6 +95,7 @@ export default class Trade extends Component {
           <TradeItens
             firstInventory={firstInventory}
             secondInventory={secondInventory}
+            handleSubmit={this.handleSubmit}
           />
         }
       </>

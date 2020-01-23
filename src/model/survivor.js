@@ -136,3 +136,23 @@ export const getReportInfectedPoints = async () => {
     return error.response;
   }
 }
+
+export const postTrade = async (id, secondSurvivor) => {
+  try {
+    const params = JSON.stringify({
+      name: secondSurvivor.name
+    
+    });
+
+    return await api.post(`/people/${id}/properties/trade_item`, params, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+  catch (error) {
+    console.error(error.response);
+    alert('Failed to trade');
+    return error.response;
+  }
+}
