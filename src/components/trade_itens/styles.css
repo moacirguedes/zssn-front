@@ -1,0 +1,16 @@
+.TradeItensWrapper {
+  border: 1px solid black;
+  width: 40%;
+  height: 200px;
+  padding: 15px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.TradeItens {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

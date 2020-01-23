@@ -3,6 +3,7 @@ import './styles.css';
 import { getSurvivor, getInventory } from '../../model/survivor';
 import { Link } from 'react-router-dom';
 import { StatusCode } from '../../services/httpService';
+import Inventory from '../../components/inventory';
 
 export default class Profile extends Component {
   state = {
@@ -59,11 +60,7 @@ export default class Profile extends Component {
           <label>Gender: {survivor.gender}</label>
           <label>Location: {survivor.lonlat}</label>
 
-          {
-            inventory.map(item =>
-              <label key={item.location}>{item.item.name}: {item.quantity}</label>
-            )
-          }
+          <Inventory inventory={inventory} />
 
           <Link to={this.handleUpdateButton}>
             <button className="UpdateButton">Update</button>

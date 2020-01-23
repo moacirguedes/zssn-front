@@ -65,6 +65,7 @@ export default class ReportInfected extends Component {
             name="infected"
             onChange={this.handleChange}
             required
+            disabled={!reporter}
           >
             <SurvivorOptions 
               survivors={survivors}

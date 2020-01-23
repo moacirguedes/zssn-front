@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import './styles.css';
-import { getSurvivors, reportInfected } from '../../model/survivor';
-import { StatusCode } from '../../services/httpService';
+import { getSurvivors, getInventory } from '../../model/survivor';
 import SurvivorOptions from '../../components/survivor_options';
+import TradeItens from '../../components/trade_itens';
+import { StatusCode } from '../../services/httpService';
 
 export default class Trade extends Component {
   state = {
     survivors: [],
     firstSurvivor: '',
-    secondSurvior: ''
+    secondSurvivor: '',
+    firstInventory: '',
+    secondInventory: ''
   }
 
   componentDidMount() {
@@ -23,56 +26,78 @@ export default class Trade extends Component {
     });
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
       [name]: value
+    }, () => {
+      if (this.state.firstSurvivor !== '') this.loadFirstInventory();
+      if (this.state.secondSurvivor !== '') this.loadSecondInventory();
     });
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault();
+  async loadFirstInventory() {
+    const response = await getInventory(this.state.firstSurvivor);
 
-    const { reporter, infected } = this.state;
+    if (response.status === StatusCode.OK_STATUS) {
+      this.setState({
+        firstInventory: response.data
+      });
+    }
+  }
 
-    const response = await reportInfected(reporter, infected);
+  async loadSecondInventory() {
+    const response = await getInventory(this.state.secondSurvivor);
 
-    if (response.status === StatusCode.NO_CONTENT) alert('Survivor reported');
+    if (response.status === StatusCode.OK_STATUS) {
+      this.setState({
+        secondInventory: response.data
+      });
+    }
   }
 
   render() {
-    const { survivors, firstSurvivor, secondSurvior } = this.state;
+    const { survivors, firstSurvivor, secondSurvivor, firstInventory, secondInventory } = this.state;
 
     return (
-      <div className="TradeWrapper">
-        <form className="Form" onSubmit={this.handleSubmit}>
-          <label>First Survivor</label>
-          <select
-            value={firstSurvivor}
-            name="firstSurvivor"
-            onChange={this.handleChange}
-            required
-          >
-            <SurvivorOptions
-              survivors={survivors}
-            />
-          </select>
+      <>
+        <div className="TradeWrapper">
+          <div className="Form">
+            <label>First Survivor</label>
+            <select
+              value={firstSurvivor}
+              name="firstSurvivor"
+              onChange={this.handleChange}
+              required
+            >
+              <SurvivorOptions
+                survivors={survivors}
+              />
+            </select>
 
-          <label>Second Survivor</label>
-          <select
-            value={secondSurvior}
-            name="secondSurvior"
-            onChange={this.handleChange}
-            required
-          >
-            <SurvivorOptions
-              survivors={survivors}
-            />
-          </select>
+            <label>Second Survivor</label>
+            <select
+              value={secondSurvivor}
+              name="secondSurvivor"
+              onChange={this.handleChange}
+              required
+              disabled={!firstSurvivor}
+            >
+              <SurvivorOptions
+                survivors={survivors}
+              />
+            </select>
+          </div>
+        </div>
 
-        </form>
-      </div>
+        {firstInventory && secondInventory &&
+          <TradeItens
+            firstInventory={firstInventory}
+            secondInventory={secondInventory}
+          />
+        }
+      </>
     );
   }
 }
