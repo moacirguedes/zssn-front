@@ -78,10 +78,10 @@ export const updateSurvivor = async (id, survivor) => {
   }
 }
 
-export const reportInfected = async (id, survivor) => {
+export const reportInfected = async (id, infectedId) => {
   try {
     const params = JSON.stringify({
-      infected: survivor
+      infected: infectedId
     });
 
     return await api.post(`/people/${id}/report_infection`, params, {

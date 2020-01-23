@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivors, reportInfected } from '../../model/survivor';
 import { StatusCode } from '../../services/httpService';
+import SurvivorOptions from '../../components/survivor_options';
 
 export default class ReportInfected extends Component {
   state = {
@@ -20,10 +21,6 @@ export default class ReportInfected extends Component {
     this.setState({
       survivors: data
     });
-  }
-
-  handleLocation(location) {
-    return location.substring(location.lastIndexOf('/') + 1);
   }
 
   handleChange = event => {
@@ -57,16 +54,9 @@ export default class ReportInfected extends Component {
             onChange={this.handleChange}
             required
           >
-            <option disabled></option>
-
-            {survivors.map(survivor =>
-              <option
-                key={survivor.location}
-                value={this.handleLocation(survivor.location)}
-              >
-                {survivor.name}
-              </option>
-            )}
+            <SurvivorOptions 
+              survivors={survivors}
+            />
           </select>
 
           <label>Infected</label>
@@ -76,16 +66,9 @@ export default class ReportInfected extends Component {
             onChange={this.handleChange}
             required
           >
-            <option disabled></option>
-
-            {survivors.map(survivor =>
-              <option
-                key={survivor.location}
-                value={this.handleLocation(survivor.location)}
-              >
-                {survivor.name}
-              </option>
-            )}
+            <SurvivorOptions 
+              survivors={survivors}
+            />
           </select>
 
           <button>Submit report</button>
