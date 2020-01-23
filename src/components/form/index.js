@@ -15,7 +15,7 @@ const Form = (props) =>
     />
 
     <div className="Inline">
-      <div class="LabelInputDiv">
+      <div class="LabelInput">
         <label className="CreateLabel">Age</label>
 
         <input
@@ -30,7 +30,7 @@ const Form = (props) =>
         />
       </div>
 
-      <div class="LabelInputDiv">
+      <div class="LabelInput">
         <label className="CreateLabel">Gender</label>
 
         <select
@@ -44,7 +44,7 @@ const Form = (props) =>
         </select>
       </div>
 
-      <div class="LabelInputDiv">
+      <div class="LabelInput">
         <label className="CreateLabel">Location</label>
 
         <input

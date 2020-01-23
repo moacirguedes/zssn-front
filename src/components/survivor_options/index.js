@@ -11,7 +11,7 @@ const SurvivorOptions = ({ survivors }) => {
       <option disabled></option>
       {
         survivors.map(survivor =>
-          !survivor.infected &&
+          survivor['infected?'] === false &&
           <option
             key={survivor.location}
             value={handleLocation(survivor.location)}

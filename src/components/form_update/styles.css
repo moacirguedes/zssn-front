@@ -1,4 +1,4 @@
-.UpdateLineInputs {
+.UpdateInline {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   margin-bottom: -10px;
 }
 
-.UpdateLabelInputDiv {
+.UpdateLabelInput {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

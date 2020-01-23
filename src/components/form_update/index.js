@@ -12,8 +12,8 @@ const FormUpdate = (props) =>
       onChange={props.handleChange}
     />
 
-    <div className="UpdateLineInputs">
-      <div className="UpdateLabelInputDiv">
+    <div className="UpdateInline">
+      <div className="UpdateLabelInput">
         <label className="UpdateLabel">Age</label>
         <input
           className="UpdateInput"
@@ -27,7 +27,7 @@ const FormUpdate = (props) =>
         />
       </div>
 
-      <div className="UpdateLabelInputDiv">
+      <div className="UpdateLabelInput">
         <label className="UpdateLabel">Gender</label>
         <select
           className="UpdateInput"
