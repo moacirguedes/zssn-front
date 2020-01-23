@@ -3,7 +3,7 @@ import './styles.css';
 
 const FormUpdate = (props) =>
 
-  <form className="UpdateProfileForm" onSubmit={props.handleSubmit}>
+  <form className="Form" onSubmit={props.handleSubmit}>
     <label className="UpdateLabel">Name</label>
     <input
       type="text"

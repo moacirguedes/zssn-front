@@ -1,12 +1,4 @@
-.NewSurvivorForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-  padding: 0px 20px;
-}
-
-.LineInputs {
+.Inline {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

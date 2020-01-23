@@ -14,13 +14,15 @@ const Routes = () => (
   <BrowserRouter>
     <Header />
     <Switch>
-      <Route exact path="/" component={Main} />
-      <Route path="/create" component={NewSurvivor} />
-      <Route path="/profile/:id/update" component={UpdateProfile} />
-      <Route path="/profile/:id" component={Profile} />
-      <Route path="/reports" component={Reports} />
-      <Route path="/report" component={ReportInfected} />
-      <Route path="/trade" component={Trade} />
+      <div className="Div">
+        <Route exact path="/" component={Main} />
+        <Route path="/create" component={NewSurvivor} />
+        <Route exact path="/profile/:id" component={Profile} />
+        <Route path="/profile/:id/update" component={UpdateProfile} />
+        <Route path="/reports" component={Reports} />
+        <Route path="/report" component={ReportInfected} />
+        <Route path="/trade" component={Trade} />
+      </div>
     </Switch>
   </BrowserRouter>
 );

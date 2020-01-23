@@ -3,7 +3,7 @@ import './style.css';
 
 const Form = (props) =>
   <form
-    className="NewSurvivorForm"
+    className="Form"
     onSubmit={props.handleSubmit}
   >
     <label className="CreateLabel">Name</label>
@@ -14,7 +14,7 @@ const Form = (props) =>
       onChange={props.handleChange}
     />
 
-    <div className="LineInputs">
+    <div className="Inline">
       <div class="LabelInputDiv">
         <label className="CreateLabel">Age</label>
 
@@ -56,7 +56,7 @@ const Form = (props) =>
       </div>
     </div>
 
-    <div className="LineInputs height140">
+    <div className="Inline height140">
       <div className="ItensDiv">
         <label className="CreateLabel">Water</label>
         <br />
