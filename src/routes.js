@@ -8,6 +8,7 @@ import Profile from './pages/profile';
 import UpdateProfile from './pages/update_profile';
 import ReportInfected from './pages/report_infected';
 import Reports from './pages/reports';
+import Trade from './pages/trade';
 
 const Routes = () => (
   <BrowserRouter>
@@ -19,6 +20,7 @@ const Routes = () => (
       <Route path="/profile/:id" component={Profile} />
       <Route path="/reports" component={Reports} />
       <Route path="/report" component={ReportInfected} />
+      <Route path="/trade" component={Trade} />
     </Switch>
   </BrowserRouter>
 );
