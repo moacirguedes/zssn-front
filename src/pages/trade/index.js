@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
-import { getSurvivors, getInventory } from '../../model/survivor';
+import { getSurvivors, getInventory, getSurvivor } from '../../model/survivor';
 import SurvivorOptions from '../../components/survivor_options';
 import TradeItens from '../../components/trade_itens';
 import { StatusCode } from '../../services/httpService';
@@ -11,7 +11,8 @@ export default class Trade extends Component {
     firstSurvivor: '',
     secondSurvivor: '',
     firstInventory: '',
-    secondInventory: ''
+    secondInventory: '',
+    secondName: ''
   }
 
   componentDidMount() {
@@ -53,12 +54,20 @@ export default class Trade extends Component {
     if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         secondInventory: response.data
-      });
+      }, await this.getSecondSurvivorName());
     }
   }
 
+  async getSecondSurvivorName() {
+    const { data } = await getSurvivor(this.state.secondSurvivor);
+
+    this.setState({
+      secondName: data.name
+    });
+  }
+
   render() {
-    const { survivors, firstSurvivor, secondSurvivor, firstInventory, secondInventory } = this.state;
+    const { survivors, firstSurvivor, secondSurvivor, firstInventory, secondInventory, secondName } = this.state;
 
     return (
       <>
@@ -95,7 +104,8 @@ export default class Trade extends Component {
           <TradeItens
             firstInventory={firstInventory}
             secondInventory={secondInventory}
-            handleSubmit={this.handleSubmit}
+            firstId={firstSurvivor}
+            secondName={secondName}
           />
         }
       </>
