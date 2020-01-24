@@ -5,11 +5,11 @@ const serializeItens = (survivor) => {
 }
 
 const serializePickItens = (itens) => {
-  return `Fiji Water:${itens.firstWater};Campbell Soup:${itens.firstFood};First Aid Pouch:${itens.firstMedication};AK47:${itens.firstAmmunition}`;
+  return `Fiji Water:${itens.pick.fijiWater};Campbell Soup:${itens.pick.campbellSoup};First Aid Pouch:${itens.pick.firstAidPouch};AK47:${itens.pick.ak47}`;
 }
 
 const serializePaymentItens = (itens) => {
-  return `Fiji Water:${itens.secondWater};Campbell Soup:${itens.secondFood};First Aid Pouch:${itens.secondMedication};AK47:${itens.secondAmmunition}`;
+  return `Fiji Water:${itens.payment.fijiWater};Campbell Soup:${itens.payment.campbellSoup};First Aid Pouch:${itens.payment.firstAidPouch};AK47:${itens.payment.ak47}`;
 }
 
 export const getSurvivors = async () => {
