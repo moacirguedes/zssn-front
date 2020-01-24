@@ -34,6 +34,9 @@ export default class UpdateProfile extends Component {
       alert('Profile updated');
       this.props.history.goBack();
     }
+    else {
+      alert('something went wrong, try again');
+    }
   }
 
   async loadSurvivor() {
@@ -50,6 +53,7 @@ export default class UpdateProfile extends Component {
       });
     }
     else {
+      alert('Survivor not found');
       this.props.history.goBack();
     }
   }

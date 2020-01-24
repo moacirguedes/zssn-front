@@ -14,12 +14,9 @@ const serializePaymentItens = (itens) => {
 
 export const getSurvivors = async () => {
   try {
-    const { data } = await api.get('people');
-    return data;
+    return await api.get('people');
   }
   catch (error) {
-    console.error(error.response);
-    alert('Failed to load survivors');
     return error.response;
   }
 }
@@ -29,8 +26,6 @@ export const getSurvivor = async (id) => {
     return await api.get(`people/${id}`);
   }
   catch (error) {
-    console.error(error.response);
-    alert('Survivor not found');
     return error.response;
   }
 }
@@ -40,7 +35,6 @@ export const getInventory = async (id) => {
     return await api.get(`people/${id}/properties`);
   }
   catch (error) {
-    console.error(error.response);
     return error.response;
   }
 }
@@ -61,9 +55,7 @@ export const postSurvivor = async (survivor) => {
       }
     });
   }
-  catch (error) {
-    console.error(error.response);
-    alert(JSON.stringify(error.response.data));
+  catch (error) {  
     return error.response;
   }
 }
@@ -84,8 +76,6 @@ export const updateSurvivor = async (id, survivor) => {
     });
   }
   catch (error) {
-    console.error(error.response);
-    alert('something went wrong, try again');
     return error.response;
   }
 }
@@ -103,8 +93,6 @@ export const reportInfected = async (id, infectedId) => {
     });
   }
   catch (error) {
-    console.error(error.response);
-    alert('Failed to report');
     return error.response;
   }
 }
@@ -114,7 +102,6 @@ export const getReportInfecteds = async () => {
     return await api.get('/report/infected');
   }
   catch (error) {
-    console.error(error.response);
     return error.response;
   }
 }
@@ -124,7 +111,6 @@ export const getReportNonInfecteds = async () => {
     return await api.get('/report/non_infected');
   }
   catch (error) {
-    console.error(error.response);
     return error.response;
   }
 }
@@ -134,7 +120,6 @@ export const getReportPeopleInventory = async () => {
     return await api.get('/report/people_inventory');
   }
   catch (error) {
-    console.error(error.response);
     return error.response;
   }
 }
@@ -144,7 +129,6 @@ export const getReportInfectedPoints = async () => {
     return await api.get('/report/infected_points');
   }
   catch (error) {
-    console.error(error.response);
     return error.response;
   }
 }
@@ -159,7 +143,6 @@ export const postTrade = async (id, secondName, itens) => {
       }
     });
 
-    console.log(params);
     return await api.post(`/people/${id}/properties/trade_item.json`, params, {
       headers: {
         'Content-Type': 'application/json',
@@ -167,8 +150,6 @@ export const postTrade = async (id, secondName, itens) => {
     });
   }
   catch (error) {
-    console.error(error.response);
-    alert('Failed to trade');
     return error.response;
   }
 }

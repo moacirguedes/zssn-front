@@ -25,6 +25,9 @@ const TradeItens = ({ firstInventory, secondInventory, firstSurvivorId, secondSu
       reloadInventories();
       alert('Itens traded');
     }
+    else {
+      alert('Failed to trade');
+    }
   }
 
   const handleChange = (event) => {

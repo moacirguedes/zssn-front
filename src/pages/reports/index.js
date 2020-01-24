@@ -9,6 +9,7 @@ import {
 import {
   PieChart, Pie, Legend, Tooltip, Cell
 } from 'recharts';
+import { StatusCode } from '../../services/httpService';
 
 export default class Reports extends Component {
   state = {
@@ -26,35 +27,39 @@ export default class Reports extends Component {
   }
 
   async loadReportInfecteds() {
-    const { data } = await getReportInfecteds();
+    const response = await getReportInfecteds();
 
-    this.setState({
-      infecteds: data.report
-    });
+    this.setReportState(response, 'infecteds');
   }
 
   async loadReportNonInfecteds() {
-    const { data } = await getReportNonInfecteds();
-
-    this.setState({
-      nonInfecteds: data.report
-    });
+    const response = await getReportNonInfecteds();
+   
+    this.setReportState(response, 'nonInfecteds');
   }
 
   async loadReportInfectedPoints() {
-    const { data } = await getReportInfectedPoints();
+    const response = await getReportInfectedPoints();
 
-    this.setState({
-      infectedPoints: data.report
-    });
+    this.setReportState(response, 'infectedPoints');
   }
 
   async loadReportPeopleInventory() {
-    const { data } = await getReportPeopleInventory();
+    const response = await getReportPeopleInventory();
 
-    this.setState({
-      peopleInventory: data.report
-    });
+    this.setReportState(response, 'peopleInventory');
+  }
+
+  setReportState(response, report) {
+    console.log(response.data)
+    if (response.status === StatusCode.OK_STATUS) {
+      this.setState({
+        [report]: response.data.report
+      });
+    }
+    else {
+      alert('Failed to load all reports');
+    }
   }
 
   render() {
