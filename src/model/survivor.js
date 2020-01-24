@@ -1,5 +1,17 @@
 import { api } from '../services/httpService';
 
+const serializeItens = (survivor) => {
+  return `Water:${survivor.water},Food:${survivor.food},Medication:${survivor.medication},Ammunition:${survivor.ammunition}`;
+}
+
+const serializePickItens = (itens) => {
+  return `Water:${itens.firstWater};Food:${itens.firstFood};Medication:${itens.firstMedication};Ammunition:${itens.firstAmmunition}`;
+}
+
+const serializePaymentItens = (itens) => {
+  return `Water:${itens.secondWater};Food:${itens.secondFood};Medication:${itens.secondMedication};Ammunition:${itens.secondAmmunition}`;
+}
+
 export const getSurvivors = async () => {
   try {
     const { data } = await api.get('people');
@@ -40,7 +52,7 @@ export const postSurvivor = async (survivor) => {
       age: survivor.age,
       gender: survivor.gender,
       lonlat: survivor.lonlat,
-      items: `water:${survivor.water},food:${survivor.food},medication:${survivor.medication},ammunition:${survivor.ammunition}`
+      items: serializeItens(survivor)
     });
 
     return await api.post('people', params, {
@@ -137,14 +149,18 @@ export const getReportInfectedPoints = async () => {
   }
 }
 
-export const postTrade = async (id, secondSurvivor) => {
+export const postTrade = async (id, secondName, itens) => {
   try {
     const params = JSON.stringify({
-      name: secondSurvivor.name
-    
+      consumer: {
+        name: secondName,
+        pick: serializePickItens(itens),
+        payment: serializePaymentItens(itens)
+      }
     });
 
-    return await api.post(`/people/${id}/properties/trade_item`, params, {
+    console.log(params);
+    return await api.post(`/people/${id}/properties/trade_item.json`, params, {
       headers: {
         'Content-Type': 'application/json',
       }

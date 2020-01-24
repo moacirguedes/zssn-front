@@ -60,7 +60,7 @@ export default class Profile extends Component {
           <label>Gender: {survivor.gender}</label>
           <label>Location: {survivor.lonlat}</label>
 
-          <Inventory inventory={inventory} />
+          <Inventory inventory={inventory} showInput="false"/>
 
           <Link to={this.handleUpdateButton}>
             <button className="UpdateButton">Update</button>

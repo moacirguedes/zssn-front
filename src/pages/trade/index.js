@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
-import { getSurvivors, getInventory } from '../../model/survivor';
+import { getSurvivors, getInventory, getSurvivor } from '../../model/survivor';
 import SurvivorOptions from '../../components/survivor_options';
 import TradeItens from '../../components/trade_itens';
 import { StatusCode } from '../../services/httpService';
@@ -11,11 +11,17 @@ export default class Trade extends Component {
     firstSurvivor: '',
     secondSurvivor: '',
     firstInventory: '',
-    secondInventory: ''
+    secondInventory: '',
+    secondSurvivorName: ''
   }
 
   componentDidMount() {
     this.loadSurvivors();
+  }
+
+  reloadInventories = () => {
+    this.loadFirstInventory();
+    this.loadSecondInventory();
   }
 
   async loadSurvivors() {
@@ -53,18 +59,33 @@ export default class Trade extends Component {
     if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         secondInventory: response.data
-      });
+      }, await this.getSecondSurvivorName());
     }
   }
 
+  async getSecondSurvivorName() {
+    const { data } = await getSurvivor(this.state.secondSurvivor);
+
+    this.setState({
+      secondSurvivorName: data.name
+    });
+  }
+
   render() {
-    const { survivors, firstSurvivor, secondSurvivor, firstInventory, secondInventory } = this.state;
+    const { 
+      survivors, 
+      firstSurvivor, 
+      secondSurvivor, 
+      firstInventory, 
+      secondInventory, 
+      secondSurvivorName 
+    } = this.state;
 
     return (
       <>
         <div className="TradeWrapper">
           <div className="Form">
-            <label>First Survivor</label>
+            <label>Person</label>
             <select
               value={firstSurvivor}
               name="firstSurvivor"
@@ -76,7 +97,7 @@ export default class Trade extends Component {
               />
             </select>
 
-            <label>Second Survivor</label>
+            <label>Consumer</label>
             <select
               value={secondSurvivor}
               name="secondSurvivor"
@@ -95,7 +116,9 @@ export default class Trade extends Component {
           <TradeItens
             firstInventory={firstInventory}
             secondInventory={secondInventory}
-            handleSubmit={this.handleSubmit}
+            firstSurvivorId={firstSurvivor}
+            secondSurvivorName={secondSurvivorName}
+            reloadInventories={this.reloadInventories}
           />
         }
       </>
