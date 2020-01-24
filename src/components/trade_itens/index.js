@@ -4,7 +4,7 @@ import Inventory from '../inventory';
 import { postTrade } from '../../model/survivor';
 import { StatusCode } from '../../services/httpService';
 
-const TradeItens = ({ firstInventory, secondInventory, firstSurvivorId, secondSurvivorName, reloadInventories }) => {
+const TradeItens = (props, { reloadInventories }) => {
   const [state, setState] = React.useState({
     firstWater: 0,
     firstFood: 0,
@@ -19,7 +19,7 @@ const TradeItens = ({ firstInventory, secondInventory, firstSurvivorId, secondSu
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await postTrade(firstSurvivorId, secondSurvivorName, state);
+    const response = await postTrade(props.firstSurvivorId, props.secondSurvivorName, state);
 
     if (response.status === StatusCode.NO_CONTENT) {
       reloadInventories();
@@ -45,7 +45,7 @@ const TradeItens = ({ firstInventory, secondInventory, firstSurvivorId, secondSu
         <div className="TradeItens">
           <h4>Consumer Pick</h4>
           <Inventory
-            inventory={firstInventory}
+            inventory={props.firstInventory}
             showInput="true"
             handleChange={handleChange}
             survivor="first"
@@ -55,7 +55,7 @@ const TradeItens = ({ firstInventory, secondInventory, firstSurvivorId, secondSu
         <div className="TradeItens">
           <h4>Consumer Payment</h4>
           <Inventory
-            inventory={secondInventory}
+            inventory={props.secondInventory}
             showInput="true"
             handleChange={handleChange}
             survivor="second"

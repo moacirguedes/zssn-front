@@ -63,6 +63,7 @@ export default class Profile extends Component {
           <label>Age: {survivor.age}</label>
           <label>Gender: {survivor.gender}</label>
           <label>Location: {survivor.lonlat}</label>
+          <label>Infected: {survivor.infected ? 'True' : 'False'}</label>
 
           <Inventory inventory={inventory} showInput="false"/>
 

@@ -1,15 +1,15 @@
 import { api } from '../services/httpService';
 
 const serializeItens = (survivor) => {
-  return `Water:${survivor.water},Food:${survivor.food},Medication:${survivor.medication},Ammunition:${survivor.ammunition}`;
+  return `Fiji Water:${survivor.water};Campbell Soup:${survivor.food};First Aid Pouch:${survivor.medication};AK47:${survivor.ammunition}`;
 }
 
 const serializePickItens = (itens) => {
-  return `Water:${itens.firstWater};Food:${itens.firstFood};Medication:${itens.firstMedication};Ammunition:${itens.firstAmmunition}`;
+  return `Fiji Water:${itens.firstWater};Campbell Soup:${itens.firstFood};First Aid Pouch:${itens.firstMedication};AK47:${itens.firstAmmunition}`;
 }
 
 const serializePaymentItens = (itens) => {
-  return `Water:${itens.secondWater};Food:${itens.secondFood};Medication:${itens.secondMedication};Ammunition:${itens.secondAmmunition}`;
+  return `Fiji Water:${itens.secondWater};Campbell Soup:${itens.secondFood};First Aid Pouch:${itens.secondMedication};AK47:${itens.secondAmmunition}`;
 }
 
 export const getSurvivors = async () => {

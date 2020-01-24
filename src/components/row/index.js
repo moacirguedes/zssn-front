@@ -10,7 +10,7 @@ const Row = ({ survivor }) => {
 
   return (
     <tr className=
-      {survivor['infected?'] ?
+      {survivor.infected ?
         'Table__row-infected' :
         'Table__row-noninfected'
       }
@@ -20,7 +20,7 @@ const Row = ({ survivor }) => {
       <td className="Table__cell center">{survivor.gender}</td>
       <td className="Table__cell">{survivor.lonlat}</td>
       <td className="Table__cell center">
-        {survivor['infected?'] ? 'True' : 'False'}
+        {survivor.infected ? 'True' : 'False'}
       </td>
       <td className="Table__cell center">
         <Link to={handleLocation(survivor.location)}>Profile</Link>

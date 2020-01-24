@@ -8,7 +8,7 @@ const NewSurvivor = () => {
   const [state, setState] = React.useState({
     name: '',
     age: '',
-    gender: 'F',
+    gender: '',
     lonlat: '',
     water: '',
     food: '',
