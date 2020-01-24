@@ -6,8 +6,9 @@ const Form = (props) =>
     className="Form"
     onSubmit={props.handleSubmit}
   >
-    <label className="CreateLabel">Name</label>
+    <label for="name" className="CreateLabel">Name</label>
     <input
+      id="name"
       required
       name="name"
       value={props.name}
@@ -16,9 +17,10 @@ const Form = (props) =>
 
     <div className="Inline">
       <div class="LabelInput">
-        <label className="CreateLabel">Age</label>
+        <label for="age" className="CreateLabel">Age</label>
 
         <input
+          id="age"
           className="CreateSurvivorInput"
           type="number"
           min="2"
@@ -31,9 +33,10 @@ const Form = (props) =>
       </div>
 
       <div class="LabelInput">
-        <label className="CreateLabel">Gender</label>
+        <label for="gender" className="CreateLabel">Gender</label>
 
         <select
+          id="gender"
           className="CreateSurvivorInput"
           value={props.gender}
           onChange={props.handleChange}
@@ -45,9 +48,10 @@ const Form = (props) =>
       </div>
 
       <div class="LabelInput">
-        <label className="CreateLabel">Location</label>
+        <label for="lonlat" className="CreateLabel">Location</label>
 
         <input
+          id="lonlat"
           value={props.lonlat}
           onChange={props.handleChange}
           name="lonlat"
@@ -58,10 +62,10 @@ const Form = (props) =>
 
     <div className="Inline height140">
       <div className="ItensDiv">
-        <label className="CreateLabel">Water</label>
-        <br />
+        <label for="water" className="CreateLabel">Water</label>
 
         <input
+          id="water"
           className="CreateItemInput"
           type="number"
           min="0"
@@ -71,10 +75,10 @@ const Form = (props) =>
           name="water"
         />
 
-        <label className="CreateLabel">Food</label>
-        <br />
+        <label for="food" className="CreateLabel">Food</label>
 
         <input
+          id="food"
           className="CreateItemInput"
           type="number"
           min="0"
@@ -86,10 +90,10 @@ const Form = (props) =>
       </div>
 
       <div className="ItensDiv">
-        <label className="CreateLabel">Medication</label>
-        <br />
+        <label for="medication" className="CreateLabel">Medication</label>
 
         <input
+          id="medication"
           className="CreateItemInput"
           type="number"
           min="0"
@@ -99,10 +103,10 @@ const Form = (props) =>
           name="medication"
         />
 
-        <label className="CreateLabel">Ammunition</label>
-        <br />
-
+        <label for="ammunition" className="CreateLabel">Ammunition</label>
+  
         <input
+          id="ammunition"
           className="CreateItemInput"
           type="number"
           min="0"
