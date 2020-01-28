@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Profile from '../../../pages/profile';
 import faker from 'faker';
 
@@ -10,21 +10,9 @@ describe('<Profile />', () => {
     age: faker.random.number(70).toString(),
     gender: Math.random() > 0.5 ? 'F' : 'M',
     lonlat: '',
+    infected: Math.random() > 0.5 ? true : false,
     ...props
   });
-
-  function inventoryFactory(item) {
-    const inventory = [
-      {
-        quantity: faker.random.number(90),
-        item: {
-          name: item
-        }
-      }
-    ];
-
-    return inventory;
-  }
 
   it('should render correctly', () => {
     const wrapper = shallow(<Profile />);
@@ -92,55 +80,14 @@ describe('<Profile />', () => {
     expect(wrapper.find('label').at(2).text()).toContain(survivor.lonlat);
   });
 
-  it('should show the amount of water', () => {
-    const inventory = inventoryFactory('water');
+  it('should show infection status', () => {
+    const survivor = survivorFactory();
     const wrapper = shallow(<Profile />);
 
     wrapper.setState({
-      inventory: inventory
+      survivor: survivor
     });
 
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of food', () => {
-    const inventory = inventoryFactory('food');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of medication', () => {
-    const inventory = inventoryFactory('medication');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of ammunition', () => {
-    const inventory = inventoryFactory('ammunition');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
+    expect(wrapper.find('label').at(3).text()).toContain(survivor.lonlat);
   });
 });
