@@ -13,8 +13,8 @@ import Trade from './pages/trade';
 const Routes = () => (
   <BrowserRouter>
     <Header />
-    <Switch>
-      <div className="Div">
+    <div className="Div">
+      <Switch>
         <Route exact path="/" component={Main} />
         <Route path="/create" component={NewSurvivor} />
         <Route exact path="/profile/:id" component={Profile} />
@@ -22,8 +22,8 @@ const Routes = () => (
         <Route path="/reports" component={Reports} />
         <Route path="/report" component={ReportInfected} />
         <Route path="/trade" component={Trade} />
-      </div>
-    </Switch>
+      </Switch>
+    </div>
   </BrowserRouter>
 );
 

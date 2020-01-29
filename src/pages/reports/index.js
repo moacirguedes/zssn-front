@@ -34,7 +34,7 @@ export default class Reports extends Component {
 
   async loadReportNonInfecteds() {
     const response = await getReportNonInfecteds();
-   
+
     this.setReportState(response, 'nonInfecteds');
   }
 
@@ -51,7 +51,6 @@ export default class Reports extends Component {
   }
 
   setReportState(response, report) {
-    console.log(response.data)
     if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         [report]: response.data.report
@@ -81,7 +80,9 @@ export default class Reports extends Component {
             paddingAngle={1}
           >
             {
-              chartData.map((_entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
+              chartData.map((_entry, index) =>
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              )
             }
           </Pie>
           <Legend />

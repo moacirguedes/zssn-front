@@ -65,7 +65,7 @@ export default class Profile extends Component {
           <label>Location: {survivor.lonlat}</label>
           <label>Infected: {survivor.infected ? 'True' : 'False'}</label>
 
-          <Inventory inventory={inventory} showInput="false"/>
+          <Inventory inventory={inventory} />
 
           <Link to={this.handleUpdateButton}>
             <button className="UpdateButton">Update</button>

@@ -1,16 +1,13 @@
 import { api } from '../services/httpService';
 
-const serializeItens = (survivor) => {
-  return `Fiji Water:${survivor.water};Campbell Soup:${survivor.food};First Aid Pouch:${survivor.medication};AK47:${survivor.ammunition}`;
-}
+const serializeItens = (survivor) =>
+  `Fiji Water:${survivor.water};Campbell Soup:${survivor.food};First Aid Pouch:${survivor.medication};AK47:${survivor.ammunition}`;
 
-const serializePickItens = (itens) => {
-  return `Fiji Water:${itens.pick.fijiWater};Campbell Soup:${itens.pick.campbellSoup};First Aid Pouch:${itens.pick.firstAidPouch};AK47:${itens.pick.ak47}`;
-}
+const serializePickItens = (itens) =>
+  `Fiji Water:${itens.pick.fijiWater};Campbell Soup:${itens.pick.campbellSoup};First Aid Pouch:${itens.pick.firstAidPouch};AK47:${itens.pick.ak47}`;
 
-const serializePaymentItens = (itens) => {
-  return `Fiji Water:${itens.payment.fijiWater};Campbell Soup:${itens.payment.campbellSoup};First Aid Pouch:${itens.payment.firstAidPouch};AK47:${itens.payment.ak47}`;
-}
+const serializePaymentItens = (itens) =>
+  `Fiji Water:${itens.payment.fijiWater};Campbell Soup:${itens.payment.campbellSoup};First Aid Pouch:${itens.payment.firstAidPouch};AK47:${itens.payment.ak47}`;
 
 export const getSurvivors = async () => {
   try {
@@ -55,7 +52,7 @@ export const postSurvivor = async (survivor) => {
       }
     });
   }
-  catch (error) {  
+  catch (error) {
     return error.response;
   }
 }

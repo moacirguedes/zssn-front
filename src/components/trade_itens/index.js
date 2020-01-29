@@ -55,7 +55,7 @@ const TradeItens = (props) => {
           <h4>Consumer Pick</h4>
           <Inventory
             inventory={props.firstInventory}
-            showInput="true"
+            showInput
             handleChange={event => handleChange(event, 'pick')}
             keys={state.pick}
           />
@@ -65,7 +65,7 @@ const TradeItens = (props) => {
           <h4>Consumer Payment</h4>
           <Inventory
             inventory={props.secondInventory}
-            showInput="true"
+            showInput
             handleChange={event => handleChange(event, 'payment')}
             keys={state.payment}
           />
