@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import NewSurvivor from '../../../pages/new_survivor';
 
 describe('<NewSurvivor />', () => {

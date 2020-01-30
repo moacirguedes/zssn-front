@@ -14,7 +14,7 @@ export default class Profile extends Component {
   }
 
   async loadSurvivor() {
-    const { id } = this.props.match.params; 
+    const { id } = this.props.match.params;
 
     const { data } = await getSurvivor(id);
 
@@ -24,10 +24,9 @@ export default class Profile extends Component {
   }
 
   async loadInventory() {
-    const { id } = this.props.match.params; 
+    const { id } = this.props.match.params;
 
     const { data } = await getInventory(id);
-    console.log(data)
 
     this.setState({
       inventory: data
@@ -45,10 +44,12 @@ export default class Profile extends Component {
             <label>Age: {survivor.age}</label>
             <label>Gender: {survivor.gender}</label>
             <label>Location: {survivor.lonlat}</label>
-            
-            {inventory.map(item => 
-              <label>{item.item.name}: {item.quantity}</label>
-            )}
+
+            {
+              inventory.map(item =>
+                <label key={item.location}>{item.item.name}: {item.quantity}</label>
+              )
+            }
           </div>
         </div>
       </div>
