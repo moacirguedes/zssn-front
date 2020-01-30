@@ -9,11 +9,11 @@
   color: white;
 }
 
-.NavigationDiv {
+.Header__wrapper {
   margin-top: 20px;
 }
 
-.NavigationLink {
+.Header__link {
   text-decoration: none;
   padding: 5px;
   color: white;
