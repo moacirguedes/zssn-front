@@ -21,6 +21,7 @@ const Table = ({survivors}) =>
         <th className="Table__header">
           Infected?
         </th>
+        <th className="Table__header"></th>
       </tr>
     </thead>
 

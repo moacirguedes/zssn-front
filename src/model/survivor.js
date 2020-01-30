@@ -10,6 +10,24 @@ export const getSurvivors = async () => {
   }
 }
 
+export const getSurvivor = async (id) => {
+  try {
+    return await api.get(`people/${id}`);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+export const getInventory = async (id) => {
+  try {
+    return await api.get(`people/${id}/properties`);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 export const postSurvivor = async (survivor) => {
   try {
     const params = JSON.stringify({
