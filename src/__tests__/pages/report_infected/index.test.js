@@ -34,11 +34,11 @@ describe('<ReportInfected />', () => {
         survivors: survivors
       });
 
-      wrapper.find('select').at(0).simulate('change', {
+      wrapper.find('[name="reporter"]').simulate('change', {
         target: { value: survivors[0].location, name: 'reporter' }
       });
 
-      wrapper.find('select').at(1).simulate('change', {
+      wrapper.find('[name="infected"]').simulate('change', {
         target: { value: survivors[1].location, name: 'infected' }
       });
 

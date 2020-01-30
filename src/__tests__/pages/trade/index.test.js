@@ -23,7 +23,7 @@ describe('<Trade />', () => {
       const spyLoadInventory = jest.spyOn(Trade.prototype, 'loadFirstInventory');
       const wrapper = mount(<Trade />);
 
-      wrapper.find('select').first().simulate('change', {
+      wrapper.find('[name="firstSurvivor"]').simulate('change', {
         target: { name: 'firstSurvivor'}
       });
 
@@ -36,7 +36,7 @@ describe('<Trade />', () => {
       const spyLoadInventory = jest.spyOn(Trade.prototype, 'loadSecondInventory');
       const wrapper = mount(<Trade />);
 
-      wrapper.find('select').last().simulate('change', {
+      wrapper.find('[name="secondSurvivor"]').last().simulate('change', {
         target: { name: 'secondSurvivor'}
       });
 

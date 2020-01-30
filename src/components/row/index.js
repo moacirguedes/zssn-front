@@ -3,7 +3,7 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 
 const Row = ({ survivor }) => {
-  const handleLocation = (location) => {
+  const profilePath = (location) => {
     const id = location.substring(location.lastIndexOf('/') + 1);
     return "/profile/" + id;
   }
@@ -16,14 +16,14 @@ const Row = ({ survivor }) => {
       }
     >
       <td className="Table__cell">{survivor.name}</td>
-      <td className="Table__cell center">{survivor.age}</td>
-      <td className="Table__cell center">{survivor.gender}</td>
+      <td className="Table__cell Table_cell--center">{survivor.age}</td>
+      <td className="Table__cell Table_cell--center">{survivor.gender}</td>
       <td className="Table__cell">{survivor.lonlat}</td>
-      <td className="Table__cell center">
+      <td className="Table__cell Table_cell--center">
         {survivor.infected ? 'True' : 'False'}
       </td>
       <td className="Table__cell center">
-        <Link to={handleLocation(survivor.location)}>Profile</Link>
+        <Link to={profilePath(survivor.location)}>Profile</Link>
       </td>
     </tr>
   );

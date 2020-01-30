@@ -52,7 +52,7 @@ describe('<Reports />', () => {
         infectedPoints: infectedPoints
       });
 
-      const label = wrapper.find('label').at(0).text();
+      const label = wrapper.find('[data-id="totalPointsLost"]').text();
 
       expect(label).toContain(infectedPoints.total_points_lost);
     });
@@ -68,7 +68,7 @@ describe('<Reports />', () => {
         peopleInventory: peopleInventory
       });
 
-      const itensPerPerson = wrapper.find('label').at(1).text();
+      const itensPerPerson = wrapper.find('[data-id="avgItensPerPerson"]').text();
 
       expect(itensPerPerson).toContain(peopleInventory.average_items_quantity_per_person);
     });
@@ -84,7 +84,7 @@ describe('<Reports />', () => {
         peopleInventory: peopleInventory
       });
 
-      const itensPerHealthyPerson = wrapper.find('label').at(2).text();
+      const itensPerHealthyPerson = wrapper.find('[data-id="avgItensPerHealthyPerson"]').text();
 
       expect(itensPerHealthyPerson).toContain(peopleInventory.average_items_quantity_per_healthy_person);
     });

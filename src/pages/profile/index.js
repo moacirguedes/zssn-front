@@ -59,11 +59,11 @@ export default class Profile extends Component {
     return (
       <div className="ProfileWrapper">
         <div className="Form">
-          <h2 className="capitalize">{survivor.name}</h2>
-          <label>Age: {survivor.age}</label>
-          <label>Gender: {survivor.gender}</label>
-          <label>Location: {survivor.lonlat}</label>
-          <label>Infected: {survivor.infected ? 'True' : 'False'}</label>
+          <h2 data-id="name" className="capitalize">{survivor.name}</h2>
+          <label data-id="age">Age: {survivor.age}</label>
+          <label data-id="gender">Gender: {survivor.gender}</label>
+          <label data-id="lonlat">Location: {survivor.lonlat}</label>
+          <label data-id="infected">Infected: {survivor.infected ? 'True' : 'False'}</label>
 
           <Inventory inventory={inventory} />
 

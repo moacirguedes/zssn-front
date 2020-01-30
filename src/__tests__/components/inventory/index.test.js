@@ -7,6 +7,7 @@ describe('<Inventory />', () => {
   function inventoryFactory(item) {
     const inventory = [
       {
+        location: faker.random.uuid(),
         quantity: faker.random.number(90),
         item: {
           name: item
@@ -26,8 +27,8 @@ describe('<Inventory />', () => {
   it('should show the amount of fiji water', () => {
     const inventory = inventoryFactory('fiji water');
     const wrapper = shallow(<Inventory inventory={inventory}/>);
-
-    const labelText = wrapper.find('label').text();
+    
+    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
 
     expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
   });
@@ -36,7 +37,7 @@ describe('<Inventory />', () => {
     const inventory = inventoryFactory('campell soup');
     const wrapper = shallow(<Inventory inventory={inventory}/>);
 
-    const labelText = wrapper.find('label').text();
+    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
 
     expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
   });
@@ -45,7 +46,7 @@ describe('<Inventory />', () => {
     const inventory = inventoryFactory('first aid pouch');
     const wrapper = shallow(<Inventory inventory={inventory}/>);
 
-    const labelText = wrapper.find('label').text();
+    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
 
     expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
   });
@@ -54,7 +55,7 @@ describe('<Inventory />', () => {
     const inventory = inventoryFactory('ak47');
     const wrapper = shallow(<Inventory inventory={inventory}/>);
 
-    const labelText = wrapper.find('label').text();
+    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
 
     expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
   });

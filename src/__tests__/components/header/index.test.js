@@ -12,6 +12,6 @@ describe('<Header />', () => {
   it('should show the title', () => {
     const wrapper = shallow(<Header />);
 
-    expect(wrapper.find('h1').text()).toBe('Zombie Survival Social Network');
+    expect(wrapper.find('[data-id="title"]').text()).toBe('Zombie Survival Social Network');
   });
 });

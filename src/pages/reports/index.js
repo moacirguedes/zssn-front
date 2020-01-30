@@ -93,7 +93,7 @@ export default class Reports extends Component {
             {infectedPoints.description}
           </h4>
 
-          <label>
+          <label data-id="totalPointsLost">
             {infectedPoints.total_points_lost}
           </label>
         </div>
@@ -102,11 +102,11 @@ export default class Reports extends Component {
             {peopleInventory.description}
           </h4>
 
-          <label>
+          <label data-id="avgItensPerPerson">
             Total: {peopleInventory.average_items_quantity_per_person}
           </label>
 
-          <label>
+          <label data-id="avgItensPerHealthyPerson">
             Non-infected: {peopleInventory.average_items_quantity_per_healthy_person}
           </label>
         </div>
