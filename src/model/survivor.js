@@ -1,13 +1,10 @@
 import { api } from '../services/httpService';
 
-const serializeItens = (survivor) =>
-  `Fiji Water:${survivor.water};Campbell Soup:${survivor.food};First Aid Pouch:${survivor.medication};AK47:${survivor.ammunition}`;
+const serializeItens = (itens) =>
+  `Fiji Water:${itens.fijiWater};Campbell Soup:${itens.campbellSoup};First Aid Pouch:${itens.firstAidPouch};AK47:${itens.ak47}`;
 
-const serializePickItens = (itens) =>
-  `Fiji Water:${itens.pick.fijiWater};Campbell Soup:${itens.pick.campbellSoup};First Aid Pouch:${itens.pick.firstAidPouch};AK47:${itens.pick.ak47}`;
-
-const serializePaymentItens = (itens) =>
-  `Fiji Water:${itens.payment.fijiWater};Campbell Soup:${itens.payment.campbellSoup};First Aid Pouch:${itens.payment.firstAidPouch};AK47:${itens.payment.ak47}`;
+export const extractProfileId = (location) =>
+  location.substring(location.lastIndexOf('/') + 1);
 
 export const getSurvivors = async () => {
   try {
@@ -135,8 +132,8 @@ export const postTrade = async (id, secondName, itens) => {
     const params = JSON.stringify({
       consumer: {
         name: secondName,
-        pick: serializePickItens(itens),
-        payment: serializePaymentItens(itens)
+        pick: serializeItens(itens.pick),
+        payment: serializeItens(itens.payment)
       }
     });
 

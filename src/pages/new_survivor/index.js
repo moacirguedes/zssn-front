@@ -10,10 +10,10 @@ const NewSurvivor = () => {
     age: '',
     gender: '',
     lonlat: '',
-    water: '',
-    food: '',
-    medication: '',
-    ammunition: ''
+    fijiWater: '',
+    campbellSoup: '',
+    firstAidPouch: '',
+    ak47: ''
   });
 
   const handleChange = event => {
@@ -32,7 +32,7 @@ const NewSurvivor = () => {
 
     if (response.status === StatusCode.CREATED_STATUS) {
       alert('Survivor created');
-    } 
+    }
     else {
       alert(JSON.stringify(response.data));
     }
@@ -47,10 +47,10 @@ const NewSurvivor = () => {
         age={state.age}
         gender={state.gender}
         lonlat={state.lonlat}
-        water={state.water}
-        food={state.food}
-        ammunition={state.ammunition}
-        medication={state.medication}
+        fijiWater={state.fijiWater}
+        campbellSoup={state.campbellSoup}
+        ak47={state.ak47}
+        firstAidPouch={state.firstAidPouch}
       />
     </div>
   );
