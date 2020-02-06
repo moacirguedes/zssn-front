@@ -1,4 +1,4 @@
-import { api } from '../services/httpService';
+import * as SurvivorRepository from '../repositories/survivorRepository';
 
 const serializeItens = (itens) =>
   `Fiji Water:${itens.fijiWater};Campbell Soup:${itens.campbellSoup};First Aid Pouch:${itens.firstAidPouch};AK47:${itens.ak47}`;
@@ -6,144 +6,59 @@ const serializeItens = (itens) =>
 export const extractProfileId = (location) =>
   location.substring(location.lastIndexOf('/') + 1);
 
-export const getSurvivors = async () => {
-  try {
-    return await api.get('people');
-  }
-  catch (error) {
-    return error.response;
-  }
-}
+export const getSurvivors = async () => await SurvivorRepository.getSurvivors();
 
-export const getSurvivor = async (id) => {
-  try {
-    return await api.get(`people/${id}`);
-  }
-  catch (error) {
-    return error.response;
-  }
-}
+export const getSurvivor = async (id) => await SurvivorRepository.getSurvivor(id);
 
-export const getInventory = async (id) => {
-  try {
-    return await api.get(`people/${id}/properties`);
-  }
-  catch (error) {
-    return error.response;
-  }
-}
+export const getInventory = async (id) => await SurvivorRepository.getInventory(id);
+
+export const getReportInfecteds = async () => await SurvivorRepository.getReportInfecteds();
+
+export const getReportNonInfecteds = async () => await SurvivorRepository.getReportNonInfecteds();
+
+export const getReportPeopleInventory = async () => await SurvivorRepository.getReportPeopleInventory();
+
+export const getReportInfectedPoints = async () => await SurvivorRepository.getReportInfectedPoints();
 
 export const postSurvivor = async (survivor) => {
-  try {
-    const params = JSON.stringify({
-      name: survivor.name,
-      age: survivor.age,
-      gender: survivor.gender,
-      lonlat: survivor.lonlat,
-      items: serializeItens(survivor)
-    });
+  const params = JSON.stringify({
+    name: survivor.name,
+    age: survivor.age,
+    gender: survivor.gender,
+    lonlat: survivor.lonlat,
+    items: serializeItens(survivor)
+  });
 
-    return await api.post('people', params, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-  }
-  catch (error) {
-    return error.response;
-  }
+  return await SurvivorRepository.postSurvivor(params);
 }
 
 export const updateSurvivor = async (id, survivor) => {
-  try {
-    const params = JSON.stringify({
-      name: survivor.name,
-      age: survivor.age,
-      gender: survivor.gender,
-      lonlat: survivor.lonlat
-    });
+  const params = JSON.stringify({
+    name: survivor.name,
+    age: survivor.age,
+    gender: survivor.gender,
+    lonlat: survivor.lonlat
+  });
 
-    return await api.patch(`people/${id}`, params, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-  }
-  catch (error) {
-    return error.response;
-  }
+  return await SurvivorRepository.updateSurvivor(id, params);
 }
 
 export const reportInfected = async (id, infectedId) => {
-  try {
-    const params = JSON.stringify({
-      infected: infectedId
-    });
+  const params = JSON.stringify({
+    infected: infectedId
+  });
 
-    return await api.post(`/people/${id}/report_infection`, params, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-  }
-  catch (error) {
-    return error.response;
-  }
-}
-
-export const getReportInfecteds = async () => {
-  try {
-    return await api.get('/report/infected');
-  }
-  catch (error) {
-    return error.response;
-  }
-}
-
-export const getReportNonInfecteds = async () => {
-  try {
-    return await api.get('/report/non_infected');
-  }
-  catch (error) {
-    return error.response;
-  }
-}
-
-export const getReportPeopleInventory = async () => {
-  try {
-    return await api.get('/report/people_inventory');
-  }
-  catch (error) {
-    return error.response;
-  }
-}
-
-export const getReportInfectedPoints = async () => {
-  try {
-    return await api.get('/report/infected_points');
-  }
-  catch (error) {
-    return error.response;
-  }
+  return await SurvivorRepository.reportInfected(id, params);
 }
 
 export const postTrade = async (id, secondName, itens) => {
-  try {
-    const params = JSON.stringify({
-      consumer: {
-        name: secondName,
-        pick: serializeItens(itens.pick),
-        payment: serializeItens(itens.payment)
-      }
-    });
+  const params = JSON.stringify({
+    consumer: {
+      name: secondName,
+      pick: serializeItens(itens.pick),
+      payment: serializeItens(itens.payment)
+    }
+  });
 
-    return await api.post(`/people/${id}/properties/trade_item.json`, params, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-  }
-  catch (error) {
-    return error.response;
-  }
+  return await SurvivorRepository.postTrade(id, params);
 }
