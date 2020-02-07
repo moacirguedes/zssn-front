@@ -17,7 +17,7 @@ describe('<Row />', () => {
       age: faker.random.number(70).toString(),
       gender: Math.random() > 0.5 ? 'F' : 'M',
       lonlat: '',
-      infected: "False",
+      infected: false,
       ...props
     });
 
@@ -58,7 +58,7 @@ describe('<Row />', () => {
       const wrapper = shallow(<Row survivor={props} />);
       const tdText = wrapper.find('td').at(4).text();
       
-      expect(tdText).toBe(props.infected);
+      expect(tdText).toBe('False');
     });
   });
 });

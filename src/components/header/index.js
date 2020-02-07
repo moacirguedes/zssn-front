@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () =>
   <header className="Header">
-    <h1>Zombie Survival Social Network</h1>
+    <h1 data-id="title">Zombie Survival Social Network</h1>
 
     <div className="Header__wrapper">
       <Link className="Header__link" to="/">Survivor List</Link>

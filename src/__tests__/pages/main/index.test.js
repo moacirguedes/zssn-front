@@ -10,9 +10,9 @@ describe('<Main/>', () => {
   });
 
   it('should load survivors', () => {
-    const mockComponentDidMount = jest.spyOn(Main.prototype, 'loadSurvivors');
+    const spyLoadSurvivors = jest.spyOn(Main.prototype, 'loadSurvivors');
     shallow(<Main />);
 
-    expect(mockComponentDidMount).toHaveBeenCalled();
+    expect(spyLoadSurvivors).toHaveBeenCalled();
   });
 });

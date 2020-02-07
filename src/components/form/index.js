@@ -6,7 +6,7 @@ const Form = (props) =>
     className="Form"
     onSubmit={props.handleSubmit}
   >
-    <label for="name" className="CreateLabel">Name</label>
+    <label htmlFor="name" className="CreateLabel">Name</label>
     <input
       id="name"
       required
@@ -16,8 +16,8 @@ const Form = (props) =>
     />
 
     <div className="Inline">
-      <div class="LabelInput">
-        <label for="age" className="CreateLabel">Age</label>
+      <div className="LabelInput">
+        <label htmlFor="age" className="CreateLabel">Age</label>
 
         <input
           id="age"
@@ -32,8 +32,8 @@ const Form = (props) =>
         />
       </div>
 
-      <div class="LabelInput">
-        <label for="gender" className="CreateLabel">Gender</label>
+      <div className="LabelInput">
+        <label htmlFor="gender" className="CreateLabel">Gender</label>
 
         <select
           id="gender"
@@ -49,8 +49,8 @@ const Form = (props) =>
         </select>
       </div>
 
-      <div class="LabelInput">
-        <label for="lonlat" className="CreateLabel">Location</label>
+      <div className="LabelInput">
+        <label htmlFor="lonlat" className="CreateLabel">Location</label>
 
         <input
           id="lonlat"
@@ -64,7 +64,7 @@ const Form = (props) =>
 
     <div className="Inline height140">
       <div className="ItensDiv">
-        <label for="water" className="CreateLabel">Fiji Water</label>
+        <label htmlFor="water" className="CreateLabel">Fiji Water</label>
 
         <input
           id="water"
@@ -77,7 +77,7 @@ const Form = (props) =>
           name="water"
         />
 
-        <label for="food" className="CreateLabel">Campbell Soup</label>
+        <label htmlFor="food" className="CreateLabel">Campbell Soup</label>
 
         <input
           id="food"
@@ -92,7 +92,7 @@ const Form = (props) =>
       </div>
 
       <div className="ItensDiv">
-        <label for="medication" className="CreateLabel">First Aid Pouch</label>
+        <label htmlFor="medication" className="CreateLabel">First Aid Pouch</label>
 
         <input
           id="medication"
@@ -105,7 +105,7 @@ const Form = (props) =>
           name="medication"
         />
 
-        <label for="ammunition" className="CreateLabel">AK47</label>
+        <label htmlFor="ammunition" className="CreateLabel">AK47</label>
   
         <input
           id="ammunition"

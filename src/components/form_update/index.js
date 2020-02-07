@@ -4,7 +4,7 @@ import './styles.css';
 const FormUpdate = (props) =>
 
   <form className="Form" onSubmit={props.handleSubmit}>
-    <label for="name" className="UpdateLabel">Name</label>
+    <label htmlFor="name" className="UpdateLabel">Name</label>
     <input
       id="name"
       type="text"
@@ -15,7 +15,7 @@ const FormUpdate = (props) =>
 
     <div className="UpdateInline">
       <div className="UpdateLabelInput">
-        <label for="age" className="UpdateLabel">Age</label>
+        <label htmlFor="age" className="UpdateLabel">Age</label>
         <input
           id="age"
           className="UpdateInput"
@@ -30,7 +30,7 @@ const FormUpdate = (props) =>
       </div>
 
       <div className="UpdateLabelInput">
-        <label for="gender" className="UpdateLabel">Gender</label>
+        <label htmlFor="gender" className="UpdateLabel">Gender</label>
         <select
           id="gender"
           className="UpdateInput"
@@ -45,7 +45,7 @@ const FormUpdate = (props) =>
       </div>
     </div>
 
-    <label for="lonlat" className="UpdateLabel">Location</label>
+    <label htmlFor="lonlat" className="UpdateLabel">Location</label>
     <input
       id="lonlat"
       placeholder="POINT (-1.0 1.0)"

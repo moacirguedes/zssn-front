@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 
 const SurvivorOptions = ({ survivors }) => {
-  const handleLocation = (location) => {
+  const profilePath = (location) => {
     return location.substring(location.lastIndexOf('/') + 1);
   }
   
@@ -11,10 +11,10 @@ const SurvivorOptions = ({ survivors }) => {
       <option disabled></option>
       {
         survivors.map(survivor =>
-          survivor.infected === false &&
+          !survivor.infected &&
           <option
             key={survivor.location}
-            value={handleLocation(survivor.location)}
+            value={profilePath(survivor.location)}
           >
             {survivor.name}
           </option>

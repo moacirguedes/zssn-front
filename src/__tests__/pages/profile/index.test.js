@@ -10,21 +10,9 @@ describe('<Profile />', () => {
     age: faker.random.number(70).toString(),
     gender: Math.random() > 0.5 ? 'F' : 'M',
     lonlat: '',
+    infected: Math.random() > 0.5 ? true : false,
     ...props
   });
-
-  function inventoryFactory(item) {
-    const inventory = [
-      {
-        quantity: faker.random.number(90),
-        item: {
-          name: item
-        }
-      }
-    ];
-
-    return inventory;
-  }
 
   it('should render correctly', () => {
     const wrapper = shallow(<Profile />);
@@ -56,7 +44,7 @@ describe('<Profile />', () => {
       survivor: survivor
     });
 
-    expect(wrapper.find('h2').text()).toBe(survivor.name);
+    expect(wrapper.find('[data-id="name"]').text()).toBe(survivor.name);
   });
 
   it('should show the age', () => {
@@ -67,7 +55,7 @@ describe('<Profile />', () => {
       survivor: survivor
     });
 
-    expect(wrapper.find('label').at(0).text()).toContain(survivor.age);
+    expect(wrapper.find('[data-id="age"]').text()).toContain(survivor.age);
   });
 
   it('should show the gender', () => {
@@ -78,7 +66,7 @@ describe('<Profile />', () => {
       survivor: survivor
     });
 
-    expect(wrapper.find('label').at(1).text()).toContain(survivor.gender);
+    expect(wrapper.find('[data-id="gender"]').text()).toContain(survivor.gender);
   });
 
   it('should show the location', () => {
@@ -89,58 +77,17 @@ describe('<Profile />', () => {
       survivor: survivor
     });
 
-    expect(wrapper.find('label').at(2).text()).toContain(survivor.lonlat);
+    expect(wrapper.find('[data-id="lonlat"]').text()).toContain(survivor.lonlat);
   });
 
-  it('should show the amount of water', () => {
-    const inventory = inventoryFactory('water');
+  it('should show infection status', () => {
+    const survivor = survivorFactory();
     const wrapper = shallow(<Profile />);
 
     wrapper.setState({
-      inventory: inventory
+      survivor: survivor
     });
 
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of food', () => {
-    const inventory = inventoryFactory('food');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of medication', () => {
-    const inventory = inventoryFactory('medication');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of ammunition', () => {
-    const inventory = inventoryFactory('ammunition');
-    const wrapper = shallow(<Profile />);
-
-    wrapper.setState({
-      inventory: inventory
-    });
-
-    const labelText = wrapper.find('label').at(3).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
+    expect(wrapper.find('[data-id="infected"]').text()).toContain(survivor.lonlat);
   });
 });
