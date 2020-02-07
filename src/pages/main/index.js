@@ -30,9 +30,12 @@ export default class Main extends Component {
     const { survivors } = this.state;
 
     return (
-      survivors.length === 0 ?
+      !survivors ?
         <div className="Loader"></div> :
-        <Table survivors={survivors} />
+        <Table
+          data-testid="survivors-table"
+          survivors={survivors}
+        />
     );
   }
 }
