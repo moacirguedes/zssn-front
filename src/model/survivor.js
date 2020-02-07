@@ -96,3 +96,43 @@ export const reportInfected = async (id, survivor) => {
     return error.response;
   }
 }
+
+export const getReportInfecteds = async () => {
+  try {
+    return await api.get('/report/infected');
+  }
+  catch (error) {
+    console.error(error.response);
+    return error.response;
+  }
+}
+
+export const getReportNonInfecteds = async () => {
+  try {
+    return await api.get('/report/non_infected');
+  }
+  catch (error) {
+    console.error(error.response);
+    return error.response;
+  }
+}
+
+export const getReportPeopleInventory = async () => {
+  try {
+    return await api.get('/report/people_inventory');
+  }
+  catch (error) {
+    console.error(error.response);
+    return error.response;
+  }
+}
+
+export const getReportInfectedPoints = async () => {
+  try {
+    return await api.get('/report/infected_points');
+  }
+  catch (error) {
+    console.error(error.response);
+    return error.response;
+  }
+}

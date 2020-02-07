@@ -1,0 +1,13 @@
+.Reports {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.TextReports {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
