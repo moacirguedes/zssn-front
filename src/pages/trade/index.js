@@ -25,11 +25,16 @@ export default class Trade extends Component {
   }
 
   async loadSurvivors() {
-    const data = await getSurvivors();
+    const response = await getSurvivors();
 
-    this.setState({
-      survivors: data
-    });
+    if (response.status === StatusCode.OK_STATUS) {
+      this.setState({
+        survivors: response.data
+      });
+    }
+    else{
+      alert('Failed to load survivors');
+    }
   }
 
   handleChange = (event) => {

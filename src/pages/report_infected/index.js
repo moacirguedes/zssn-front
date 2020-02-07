@@ -16,11 +16,16 @@ export default class ReportInfected extends Component {
   }
 
   async loadSurvivors() {
-    const data = await getSurvivors();
+    const response = await getSurvivors();
 
-    this.setState({
-      survivors: data
-    });
+    if (response.status === StatusCode.OK_STATUS) {
+      this.setState({
+        survivors: response.data
+      });
+    }
+    else {
+      alert('Failed to load survivors');
+    }
   }
 
   handleChange = event => {
@@ -38,7 +43,12 @@ export default class ReportInfected extends Component {
 
     const response = await reportInfected(reporter, infected);
 
-    if (response.status === StatusCode.NO_CONTENT) alert('Survivor reported');
+    if (response.status === StatusCode.NO_CONTENT) {
+      alert('Survivor reported');
+    }
+    else {
+      alert('Failed to report');
+    }
   }
 
   render() {
@@ -54,7 +64,7 @@ export default class ReportInfected extends Component {
             onChange={this.handleChange}
             required
           >
-            <SurvivorOptions 
+            <SurvivorOptions
               survivors={survivors}
             />
           </select>
@@ -67,7 +77,7 @@ export default class ReportInfected extends Component {
             required
             disabled={!reporter}
           >
-            <SurvivorOptions 
+            <SurvivorOptions
               survivors={survivors}
             />
           </select>

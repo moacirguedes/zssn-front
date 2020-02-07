@@ -8,7 +8,7 @@ const NewSurvivor = () => {
   const [state, setState] = React.useState({
     name: '',
     age: '',
-    gender: 'F',
+    gender: '',
     lonlat: '',
     water: '',
     food: '',
@@ -30,7 +30,12 @@ const NewSurvivor = () => {
 
     const response = await postSurvivor(state);
 
-    if (response.status === StatusCode.CREATED_STATUS) alert('Survivor created');
+    if (response.status === StatusCode.CREATED_STATUS) {
+      alert('Survivor created');
+    } 
+    else {
+      alert(JSON.stringify(response.data));
+    }
   }
 
   return (

@@ -41,7 +41,9 @@ const Form = (props) =>
           value={props.gender}
           onChange={props.handleChange}
           name="gender"
+          required
         >
+          <option disabled></option>
           <option value="F">Female</option>
           <option value="M">Male</option>
         </select>
@@ -62,7 +64,7 @@ const Form = (props) =>
 
     <div className="Inline height140">
       <div className="ItensDiv">
-        <label for="water" className="CreateLabel">Water</label>
+        <label for="water" className="CreateLabel">Fiji Water</label>
 
         <input
           id="water"
@@ -75,7 +77,7 @@ const Form = (props) =>
           name="water"
         />
 
-        <label for="food" className="CreateLabel">Food</label>
+        <label for="food" className="CreateLabel">Campbell Soup</label>
 
         <input
           id="food"
@@ -90,7 +92,7 @@ const Form = (props) =>
       </div>
 
       <div className="ItensDiv">
-        <label for="medication" className="CreateLabel">Medication</label>
+        <label for="medication" className="CreateLabel">First Aid Pouch</label>
 
         <input
           id="medication"
@@ -103,7 +105,7 @@ const Form = (props) =>
           name="medication"
         />
 
-        <label for="ammunition" className="CreateLabel">Ammunition</label>
+        <label for="ammunition" className="CreateLabel">AK47</label>
   
         <input
           id="ammunition"

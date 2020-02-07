@@ -38,6 +38,7 @@ const FormUpdate = (props) =>
           onChange={props.handleChange}
           name="gender"
         >
+          <option disabled></option>
           <option value="F">Female</option>
           <option value="M">Male</option>
         </select>
