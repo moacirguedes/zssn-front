@@ -3,6 +3,7 @@ import './styles.css';
 import { getSurvivors } from '../../model/survivor';
 import Table from '../../components/table';
 import { StatusCode } from '../../services/httpService';
+import isEmpty from 'lodash.isempty';
 
 export default class Main extends Component {
   state = {
@@ -30,7 +31,7 @@ export default class Main extends Component {
     const { survivors } = this.state;
 
     return (
-      !survivors ?
+      isEmpty(survivors) ?
         <div className="Loader"></div> :
         <Table
           data-testid="survivors-table"
