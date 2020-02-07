@@ -15,7 +15,6 @@ const FormUpdate = (props) =>
     <div className="UpdateLineInputs">
       <div className="UpdateLabelInputDiv">
         <label className="UpdateLabel">Age</label>
-        <br />
         <input
           className="UpdateInput"
           type="number"
@@ -30,7 +29,6 @@ const FormUpdate = (props) =>
 
       <div className="UpdateLabelInputDiv">
         <label className="UpdateLabel">Gender</label>
-        <br />
         <select
           className="UpdateInput"
           value={props.gender}

@@ -6,6 +6,7 @@ import Main from './pages/main';
 import NewSurvivor from './pages/new_survivor';
 import Profile from './pages/profile';
 import UpdateProfile from './pages/update_profile';
+import ReportInfected from './pages/report_infected';
 
 const Routes = () => (
   <BrowserRouter>
@@ -15,6 +16,7 @@ const Routes = () => (
       <Route path="/create" component={NewSurvivor} />
       <Route path="/profile/:id/update" component={UpdateProfile} />
       <Route path="/profile/:id" component={Profile} />
+      <Route path="/report" component={ReportInfected} />
     </Switch>
   </BrowserRouter>
 );
