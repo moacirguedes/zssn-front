@@ -5,7 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
-
 describe('<Header />', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();

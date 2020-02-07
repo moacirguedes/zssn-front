@@ -11,9 +11,10 @@ const Inventory = ({ inventory, showInput, handleChange, keys }) => {
 
   return (
     inventory.map(item =>
-      <React.Fragment key={item.location}>
+      <div key={item.location}>
         <label
           htmlFor={item.location}
+          data-testid={item.item.name}
         >
           {item.item.name}: {item.quantity}
         </label>
@@ -29,7 +30,7 @@ const Inventory = ({ inventory, showInput, handleChange, keys }) => {
             name={Items[item.item.name]}
           />
         }
-      </React.Fragment>
+      </div>
     )
   );
 }

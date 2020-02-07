@@ -1,62 +1,63 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Inventory from '../../../components/inventory';
-import faker from 'faker';
+import { render, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { inventoryFactory } from '../../factories/survivorFactory';
 
 describe('<Inventory />', () => {
-  function inventoryFactory(item) {
-    const inventory = [
-      {
-        location: faker.random.uuid(),
-        quantity: faker.random.number(90),
-        item: {
-          name: item
-        }
-      }
-    ];
+  it('should show the amount of fiji water', async () => {
+    const inventory = inventoryFactory('fijiWater');
 
-    return inventory;
-  }
+    const { getByTestId } = render(
+      <Inventory inventory={inventory} />
+    );
 
-  it('should render correctly', () => {
-    const wrapper = shallow(<Inventory inventory={[]} />);
+    const fijiWaterLabel = await waitForElement(() => getByTestId('fijiWater'));
 
-    expect(wrapper).toMatchSnapshot();
+    expect(fijiWaterLabel).toHaveTextContent(
+      `${inventory[0].item.name}: ${inventory[0].quantity}`
+    );
   });
 
-  it('should show the amount of fiji water', () => {
-    const inventory = inventoryFactory('fiji water');
-    const wrapper = shallow(<Inventory inventory={inventory}/>);
-    
-    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
+  it('should show the amount of campbell soup', async () => {
+    const inventory = inventoryFactory('campbellSoup');
 
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
+    const { getByTestId } = render(
+      <Inventory inventory={inventory} />
+    );
+
+    const campbellSoupLabel = await waitForElement(() => getByTestId('campbellSoup'));
+
+    expect(campbellSoupLabel).toHaveTextContent(
+      `${inventory[0].item.name}: ${inventory[0].quantity}`
+    );
   });
 
-  it('should show the amount of campell soup', () => {
-    const inventory = inventoryFactory('campell soup');
-    const wrapper = shallow(<Inventory inventory={inventory}/>);
+  it('should show the amount of first aid pouch', async () => {
+    const inventory = inventoryFactory('firstAidPouch');
 
-    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
+    const { getByTestId } = render(
+      <Inventory inventory={inventory} />
+    );
 
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
+    const firstAidPouchLabel = await waitForElement(() => getByTestId('firstAidPouch'));
+
+    expect(firstAidPouchLabel).toHaveTextContent(
+      `${inventory[0].item.name}: ${inventory[0].quantity}`
+    );
   });
 
-  it('should show the amount of first aid pouch', () => {
-    const inventory = inventoryFactory('first aid pouch');
-    const wrapper = shallow(<Inventory inventory={inventory}/>);
-
-    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
-
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
-  });
-
-  it('should show the amount of ak47', () => {
+  it('should show the amount of ak47', async () => {
     const inventory = inventoryFactory('ak47');
-    const wrapper = shallow(<Inventory inventory={inventory}/>);
 
-    const labelText = wrapper.find(`[htmlFor="${inventory[0].location}"]`).text();
+    const { getByTestId } = render(
+      <Inventory inventory={inventory} />
+    );
 
-    expect(labelText).toBe(`${inventory[0].item.name}: ${inventory[0].quantity}`);
+    const ak47Label = await waitForElement(() => getByTestId('ak47'));
+
+    expect(ak47Label).toHaveTextContent(
+      `${inventory[0].item.name}: ${inventory[0].quantity}`
+    );
   });
 });
