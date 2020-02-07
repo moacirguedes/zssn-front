@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, updateSurvivor } from '../../model/survivor';
 import FormUpdate from '../../components/form_update';
+import { StatusCode } from '../../services/httpService';
 
 export default class UpdateProfile extends Component {
   state = {
@@ -27,10 +28,9 @@ export default class UpdateProfile extends Component {
     event.preventDefault();
 
     const { id } = this.props.match.params;
-    const { survivor } = this.state;
-    const response = await updateSurvivor(id, survivor);
+    const response = await updateSurvivor(id, this.state);
 
-    if (response.status === 200) { 
+    if (response.status === StatusCode.OK_STATUS) { 
       alert('Profile updated');
       this.props.history.goBack();
     }
@@ -41,7 +41,7 @@ export default class UpdateProfile extends Component {
 
     const response = await getSurvivor(id);
 
-    if (response.status === 200) {
+    if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         name: response.data.name,
         age: response.data.age,

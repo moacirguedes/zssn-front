@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, getInventory } from '../../model/survivor';
 import { Link } from 'react-router-dom';
+import { StatusCode } from '../../services/httpService';
 
 export default class Profile extends Component {
   state = {
@@ -19,7 +20,7 @@ export default class Profile extends Component {
 
     const response = await getSurvivor(id);
 
-    if (response.status === 200) {
+    if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         survivor: response.data
       });
@@ -34,7 +35,7 @@ export default class Profile extends Component {
 
     const response = await getInventory(id);
 
-    if (response.status === 200) {
+    if (response.status === StatusCode.OK_STATUS) {
       this.setState({
         inventory: response.data
       });

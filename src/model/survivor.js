@@ -1,4 +1,4 @@
-import api from '../services/httpService';
+import { api } from '../services/httpService';
 
 export const getSurvivors = async () => {
   try {
@@ -6,7 +6,8 @@ export const getSurvivors = async () => {
     return data;
   }
   catch (error) {
-    console.log(error);
+    console.log(error.response);
+    alert('Failed to load survivors');
     return error.response;
   }
 }
@@ -16,6 +17,7 @@ export const getSurvivor = async (id) => {
     return await api.get(`people/${id}`);
   }
   catch (error) {
+    console.log(error.response);
     alert('Survivor not found');
     return error.response;
   }
@@ -26,7 +28,7 @@ export const getInventory = async (id) => {
     return await api.get(`people/${id}/properties`);
   }
   catch (error) {
-    console.log(error);
+    console.log(error.response);
     return error.response;
   }
 }
@@ -48,12 +50,14 @@ export const postSurvivor = async (survivor) => {
     });
   }
   catch (error) {
+    console.log(error.response);
     alert(JSON.stringify(error.response.data));
     return error.response;
   }
 }
 
 export const updateSurvivor = async (id, survivor) => {
+  console.log(survivor);
   try {
     const params = JSON.stringify({
       name: survivor.name,
@@ -69,6 +73,7 @@ export const updateSurvivor = async (id, survivor) => {
     });
   }
   catch (error) {
+    console.log(error.response);
     alert('something went wrong, try again');
     return error.response;
   }

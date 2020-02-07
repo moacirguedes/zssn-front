@@ -12,10 +12,31 @@
   justify-content: space-between;
 }
 
-.Input__Small {
-  width: 20%;
+.CreateSurvivorInput {
+  width: 100%;
+  height: 60%;
 }
 
-.Input__Medium {
-  width: 47%;
+.CreateLabel {
+  margin-bottom: -20px;
+}
+
+.LabelInputDiv {
+  width: 30%;
+}
+
+.ItensDiv {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.CreateItemInput {
+  width: 100%;
+  height: 10px;
+}
+
+.height140 {
+  height: 140px;
 }
