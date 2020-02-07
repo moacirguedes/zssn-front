@@ -27,14 +27,14 @@ const NewSurvivor = () => {
   const handleSubmit = async event => {
     event.preventDefault();
 
-    await postSurvivor(state);
+    const response = await postSurvivor(state);
 
-    alert('Survivor created');
+    if (response.status === 201) { alert('Survivor created') }
   }
 
   return (
     <div className="NewSurvivorDiv">
-      <div className="Box">
+      <div className="NewSurvivorBox">
         <Form
           handleSubmit={handleSubmit}
           handleChange={handleChange}

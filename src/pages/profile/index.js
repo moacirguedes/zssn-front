@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivor, getInventory } from '../../model/survivor';
+import { Link } from 'react-router-dom';
 
 export default class Profile extends Component {
   state = {
@@ -16,21 +17,34 @@ export default class Profile extends Component {
   async loadSurvivor() {
     const { id } = this.props.match.params;
 
-    const { data } = await getSurvivor(id);
+    const response = await getSurvivor(id);
 
-    this.setState({
-      survivor: data
-    });
+    if (response.status === 200) {
+      this.setState({
+        survivor: response.data
+      });
+    }
+    else {
+      this.props.history.goBack();
+    }
   }
 
   async loadInventory() {
     const { id } = this.props.match.params;
 
-    const { data } = await getInventory(id);
+    const response = await getInventory(id);
 
-    this.setState({
-      inventory: data
-    });
+    if (response.status === 200) {
+      this.setState({
+        inventory: response.data
+      });
+    }
+  }
+
+  handleUpdateButton = () => {
+    const { id } = this.props.match.params;
+
+    return `/profile/${id}/update`;
   }
 
   render() {
@@ -38,9 +52,9 @@ export default class Profile extends Component {
 
     return (
       <div className="ProfileDiv">
-        <div className="Box">
+        <div className="ProfileBox">
           <div className="Labels">
-            <h2 className="capitalize"><bold>{survivor.name}</bold></h2>
+            <h2 className="capitalize">{survivor.name}</h2>
             <label>Age: {survivor.age}</label>
             <label>Gender: {survivor.gender}</label>
             <label>Location: {survivor.lonlat}</label>
@@ -50,6 +64,10 @@ export default class Profile extends Component {
                 <label key={item.location}>{item.item.name}: {item.quantity}</label>
               )
             }
+
+            <Link to={this.handleUpdateButton}>
+              <button className="UpdateButton">Update</button>
+            </Link>
           </div>
         </div>
       </div>

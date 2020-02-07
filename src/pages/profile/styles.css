@@ -5,7 +5,7 @@
   padding: 40px;
 }
 
-.Box {
+.ProfileBox {
   border: 1px solid black;
   width: 20%;
   height: 300px;
@@ -21,4 +21,8 @@
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.UpdateButton {
+  width: 100%;
 }

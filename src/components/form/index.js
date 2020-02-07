@@ -3,7 +3,7 @@ import './style.css';
 
 const Form = (props) => 
   <form
-    className="Form"
+    className="NewSurvivorForm"
     onSubmit={props.handleSubmit}
   >
     <input
