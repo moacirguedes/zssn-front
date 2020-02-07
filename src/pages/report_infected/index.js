@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import { getSurvivors, reportInfected } from '../../model/survivor';
 import { StatusCode } from '../../services/httpService';
+import SurvivorOptions from '../../components/survivor_options';
 
 export default class ReportInfected extends Component {
   state = {
@@ -20,10 +21,6 @@ export default class ReportInfected extends Component {
     this.setState({
       survivors: data
     });
-  }
-
-  handleLocation(location) {
-    return location.substring(location.lastIndexOf('/') + 1);
   }
 
   handleChange = event => {
@@ -48,50 +45,35 @@ export default class ReportInfected extends Component {
     const { survivors, reporter, infected } = this.state;
 
     return (
-      <div className="ReportInfectedDiv">
-        <div className="ReportInfectedBox">
-          <form className="ReportInfectedForm" onSubmit={this.handleSubmit}>
-            <label>Reporter</label>
-            <select
-              value={reporter}
-              name="reporter"
-              onChange={this.handleChange}
-              required
-            >
-              <option disabled></option>
-              
-              {survivors.map(survivor =>
-                <option
-                  key={survivor.location}
-                  value={this.handleLocation(survivor.location)}
-                >
-                  {survivor.name}
-                </option>
-              )}
-            </select>
+      <div className="ReportInfectedWrapper">
+        <form className="Form" onSubmit={this.handleSubmit}>
+          <label>Reporter</label>
+          <select
+            value={reporter}
+            name="reporter"
+            onChange={this.handleChange}
+            required
+          >
+            <SurvivorOptions 
+              survivors={survivors}
+            />
+          </select>
 
-            <label>Infected</label>
-            <select
-              value={infected}
-              name="infected"
-              onChange={this.handleChange}
-              required
-            >
-              <option disabled></option>
+          <label>Infected</label>
+          <select
+            value={infected}
+            name="infected"
+            onChange={this.handleChange}
+            required
+            disabled={!reporter}
+          >
+            <SurvivorOptions 
+              survivors={survivors}
+            />
+          </select>
 
-              {survivors.map(survivor =>
-                <option
-                  key={survivor.location}
-                  value={this.handleLocation(survivor.location)}
-                >
-                  {survivor.name}
-                </option>
-              )}
-            </select>
-
-            <button>Submit report</button>
-          </form>
-        </div>
+          <button>Submit report</button>
+        </form>
       </div>
     );
   }

@@ -30,7 +30,7 @@ export default class UpdateProfile extends Component {
     const { id } = this.props.match.params;
     const response = await updateSurvivor(id, this.state);
 
-    if (response.status === StatusCode.OK_STATUS) { 
+    if (response.status === StatusCode.OK_STATUS) {
       alert('Profile updated');
       this.props.history.goBack();
     }
@@ -58,17 +58,15 @@ export default class UpdateProfile extends Component {
     const { name, gender, age, lonlat } = this.state;
 
     return (
-      <div className="UpdateProfileDiv">
-        <div className="UpdateProfileBox">
-          <FormUpdate
-            name={name}
-            age={age}
-            gender={gender}
-            lonlat={lonlat}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-        </div>
+      <div className="UpdateProfileWrapper">
+        <FormUpdate
+          name={name}
+          age={age}
+          gender={gender}
+          lonlat={lonlat}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }

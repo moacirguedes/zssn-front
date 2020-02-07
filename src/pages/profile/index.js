@@ -3,6 +3,7 @@ import './styles.css';
 import { getSurvivor, getInventory } from '../../model/survivor';
 import { Link } from 'react-router-dom';
 import { StatusCode } from '../../services/httpService';
+import Inventory from '../../components/inventory';
 
 export default class Profile extends Component {
   state = {
@@ -52,24 +53,18 @@ export default class Profile extends Component {
     const { survivor, inventory } = this.state;
 
     return (
-      <div className="ProfileDiv">
-        <div className="ProfileBox">
-          <div className="Labels">
-            <h2 className="capitalize">{survivor.name}</h2>
-            <label>Age: {survivor.age}</label>
-            <label>Gender: {survivor.gender}</label>
-            <label>Location: {survivor.lonlat}</label>
+      <div className="ProfileWrapper">
+        <div className="Form">
+          <h2 className="capitalize">{survivor.name}</h2>
+          <label>Age: {survivor.age}</label>
+          <label>Gender: {survivor.gender}</label>
+          <label>Location: {survivor.lonlat}</label>
 
-            {
-              inventory.map(item =>
-                <label key={item.location}>{item.item.name}: {item.quantity}</label>
-              )
-            }
+          <Inventory inventory={inventory} showInput="false"/>
 
-            <Link to={this.handleUpdateButton}>
-              <button className="UpdateButton">Update</button>
-            </Link>
-          </div>
+          <Link to={this.handleUpdateButton}>
+            <button className="UpdateButton">Update</button>
+          </Link>
         </div>
       </div>
     );

@@ -66,7 +66,7 @@ export default class Reports extends Component {
     const COLORS = ['red', 'slateblue'];
 
     return (
-      <div className="Reports">
+      <>
         <PieChart width={350} height={350}>
           <Pie
             data={chartData}
@@ -104,7 +104,7 @@ export default class Reports extends Component {
             Non-infected: {peopleInventory.average_items_quantity_per_healthy_person}
           </label>
         </div>
-      </div>
+      </>
     );
   }
 }

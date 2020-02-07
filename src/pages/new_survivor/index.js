@@ -34,21 +34,19 @@ const NewSurvivor = () => {
   }
 
   return (
-    <div className="NewSurvivorDiv">
-      <div className="NewSurvivorBox">
-        <Form
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          name={state.name}
-          age={state.age}
-          gender={state.gender}
-          lonlat={state.lonlat}
-          water={state.water}
-          food={state.food}
-          ammunition={state.ammunition}
-          medication={state.medication}
-        />
-      </div>
+    <div className="NewSurvivorWrapper">
+      <Form
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        name={state.name}
+        age={state.age}
+        gender={state.gender}
+        lonlat={state.lonlat}
+        water={state.water}
+        food={state.food}
+        ammunition={state.ammunition}
+        medication={state.medication}
+      />
     </div>
   );
 }

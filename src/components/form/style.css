@@ -1,12 +1,4 @@
-.NewSurvivorForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-  padding: 0px 20px;
-}
-
-.LineInputs {
+.Inline {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -21,7 +13,7 @@
   margin-bottom: -20px;
 }
 
-.LabelInputDiv {
+.LabelInput {
   width: 30%;
 }
 
@@ -29,7 +21,7 @@
   width: 45%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .CreateItemInput {

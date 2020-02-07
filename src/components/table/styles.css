@@ -11,3 +11,8 @@
 .Table__header-item{
   background-color: gainsboro;
 }
+
+.TableSize {
+  height: 650px;
+  overflow: auto;
+}

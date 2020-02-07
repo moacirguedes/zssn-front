@@ -8,17 +8,21 @@ import Profile from './pages/profile';
 import UpdateProfile from './pages/update_profile';
 import ReportInfected from './pages/report_infected';
 import Reports from './pages/reports';
+import Trade from './pages/trade';
 
 const Routes = () => (
   <BrowserRouter>
     <Header />
     <Switch>
-      <Route exact path="/" component={Main} />
-      <Route path="/create" component={NewSurvivor} />
-      <Route path="/profile/:id/update" component={UpdateProfile} />
-      <Route path="/profile/:id" component={Profile} />
-      <Route path="/reports" component={Reports} />
-      <Route path="/report" component={ReportInfected} />
+      <div className="Div">
+        <Route exact path="/" component={Main} />
+        <Route path="/create" component={NewSurvivor} />
+        <Route exact path="/profile/:id" component={Profile} />
+        <Route path="/profile/:id/update" component={UpdateProfile} />
+        <Route path="/reports" component={Reports} />
+        <Route path="/report" component={ReportInfected} />
+        <Route path="/trade" component={Trade} />
+      </div>
     </Switch>
   </BrowserRouter>
 );
