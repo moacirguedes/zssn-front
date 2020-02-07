@@ -1,12 +1,11 @@
 import React from 'react';
-import { render, waitForElement } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 import Main from '../../../pages/main';
 import * as SurvivorModel from '../../../model/survivor';
 import { getSurvivorsFactory } from '../../factories/survivorFactory';
-import { Router } from 'react-router-dom'
-import { createMemoryHistory } from 'history'
-
+import { render, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 describe('<Main/>', () => {
   it('should render the table', async () => {
