@@ -20,10 +20,10 @@ describe('<Main/>', () => {
       </Router>
     );
 
-    const element = await waitForElement(
+    const table = await waitForElement(
       () => getByTestId('survivors-table')
     );
 
-    expect(element).toBeInTheDocument();
+    expect(table).toBeInTheDocument();
   });
 });

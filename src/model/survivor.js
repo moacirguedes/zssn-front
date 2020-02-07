@@ -3,6 +3,8 @@ import * as SurvivorRepository from '../repositories/survivorRepository';
 const serializeItens = (itens) =>
   `Fiji Water:${itens.fijiWater};Campbell Soup:${itens.campbellSoup};First Aid Pouch:${itens.firstAidPouch};AK47:${itens.ak47}`;
 
+export const infectedStatusToString = (infected) => infected ? 'True' : 'False'
+
 export const extractProfileId = (location) =>
   location.substring(location.lastIndexOf('/') + 1);
 

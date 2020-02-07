@@ -16,9 +16,9 @@ describe('<Header />', () => {
       </Router>
     );
 
-    const element = getByTestId('header');
+    const header = getByTestId('header');
 
-    expect(element).toBeInTheDocument();
+    expect(header).toBeInTheDocument();
   });
 
   describe('when click', () => {
@@ -33,8 +33,8 @@ describe('<Header />', () => {
           </Router>
         );
 
-        const element = getByTestId('survivor-list-link');
-        fireEvent.click(element);
+        const survivorListButton = getByTestId('survivor-list-link');
+        fireEvent.click(survivorListButton);
 
         expect(history.location.pathname).toBe('/');
       });
@@ -50,8 +50,8 @@ describe('<Header />', () => {
           </Router>
         );
 
-        const element = getByTestId('create-survivor-link');
-        fireEvent.click(element);
+        const createSurvivorButton = getByTestId('create-survivor-link');
+        fireEvent.click(createSurvivorButton);
 
         expect(history.location.pathname).toBe('/create');
       });
@@ -67,8 +67,8 @@ describe('<Header />', () => {
           </Router>
         );
 
-        const element = getByTestId('trade-itens-link');
-        fireEvent.click(element);
+        const tradeItensButton = getByTestId('trade-itens-link');
+        fireEvent.click(tradeItensButton);
 
         expect(history.location.pathname).toBe('/trade');
       });
@@ -84,8 +84,8 @@ describe('<Header />', () => {
           </Router>
         );
 
-        const element = getByTestId('report-infected-link');
-        fireEvent.click(element);
+        const reportInfectedButton = getByTestId('report-infected-link');
+        fireEvent.click(reportInfectedButton);
 
         expect(history.location.pathname).toBe('/report');
       });
@@ -101,8 +101,8 @@ describe('<Header />', () => {
           </Router>
         );
 
-        const element = getByTestId('reports-link');
-        fireEvent.click(element);
+        const reportsButton = getByTestId('reports-link');
+        fireEvent.click(reportsButton);
 
         expect(history.location.pathname).toBe('/reports');
       });
