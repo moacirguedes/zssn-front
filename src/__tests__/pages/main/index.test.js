@@ -1,18 +1,30 @@
 import React from 'react';
-import { render } from '@testing-library/react'
+import { render, waitForElement } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Main from '../../../pages/main';
 import * as SurvivorModel from '../../../model/survivor';
-import { survivor } from '../../factories/survivorFactory';
+import { getSurvivorsFactory } from '../../factories/survivorFactory';
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+
 
 describe('<Main/>', () => {
-  it('should render the table', () => {
-    SurvivorModel.getSurvivors = jest.fn().mockReturnValue(survivor);
-    
-    const { getByTestId } = render(<Main />);
+  it('should render the table', async () => {
+    SurvivorModel.getSurvivors =
+      jest.fn().mockReturnValue(getSurvivorsFactory());
 
-    const element = getByTestId('survivors-table');
-    
+    const history = createMemoryHistory();
+
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Main />
+      </Router>
+    );
+
+    const element = await waitForElement(
+      () => getByTestId('survivors-table')
+    );
+
     expect(element).toBeInTheDocument();
   });
 });

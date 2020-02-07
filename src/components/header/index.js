@@ -3,7 +3,7 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 
 const Header = () =>
-  <header className="Header">
+  <header className="Header" data-testid="header">
     <h1 data-id="title">Zombie Survival Social Network</h1>
 
     <div className="Header__wrapper">

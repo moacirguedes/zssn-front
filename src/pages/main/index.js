@@ -22,7 +22,7 @@ export default class Main extends Component {
         survivors: response.data
       });
     }
-    else{
+    else {
       alert('Failed to load survivors');
     }
   }
@@ -30,13 +30,12 @@ export default class Main extends Component {
   render() {
     const { survivors } = this.state;
 
-    return (
-      isEmpty(survivors) ?
-        <div className="Loader"></div> :
+    return isEmpty(survivors) ? (
+      <div className="Loader"></div>
+    ) : (
         <Table
-          data-testid="survivors-table"
           survivors={survivors}
         />
-    );
+      )
   }
 }

@@ -1,13 +1,20 @@
 import faker from 'faker';
+import { StatusCode } from '../../services/httpService';
+
+export const getSurvivorsFactory = () => ({
+  data: [{
+    ...survivor()
+  }],
+  status: StatusCode.OK_STATUS
+});
 
 export const survivor = props => ({
-  location: faker.random.word(),
+  location: '/' + faker.random.word(),
   name: faker.name.findName(),
   age: faker.random.number(70).toString(),
   gender: Math.random() > 0.5 ? 'F' : 'M',
   lonlat: '',
-  infected: Math.random() > 0.5 ? true : false,
-  ...props
+  infected: Math.random() > 0.5 ? true : false
 });
 
 export const inventory = props => ({
