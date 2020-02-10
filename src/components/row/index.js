@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { extractProfileId, infectedStatusToString } from '../../model/survivor';
 
 const Row = ({ survivor }) =>
-  <tr className=
-    {survivor.infected ?
-      'Table__row-infected' :
-      'Table__row-noninfected'
+  <tr
+    className={
+      survivor.infected ?
+        'Table__row-infected' :
+        'Table__row-noninfected'
     }
+    data-testid="table-row"
   >
     <td className="Table__cell">{survivor.name}</td>
     <td className="Table__cell Table__cell--center">{survivor.age}</td>
@@ -18,7 +20,12 @@ const Row = ({ survivor }) =>
       {infectedStatusToString(survivor.infected)}
     </td>
     <td className="Table__cell Table__cell--center">
-      <Link to={'/profile/' + extractProfileId(survivor.location)}>Profile</Link>
+      <Link
+        to={'/profile/' + extractProfileId(survivor.location)}
+        data-testid="profile-button"
+      >
+        Profile
+      </Link>
     </td>
   </tr>
 

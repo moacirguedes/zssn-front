@@ -1,64 +1,124 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Row from '../../../components/row';
-import faker from 'faker';
+import { render, waitForElement, fireEvent, getByTestId } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { getSurvivorFactory } from '../../factories/survivorFactory';
+import { infectedStatusToString, extractProfileId } from '../../../model/survivor';
 
 describe('<Row />', () => {
-  it('should render correctly', () => {
-    const wrapper = shallow(<Row survivor={{location: ''}} />)
+  describe('when rendered', () => {
+    it('should show the survivor name', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
 
-    expect(wrapper).toMatchSnapshot();
+      const { getByText } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
+
+      const name = await waitForElement(
+        () => getByText(survivor.data.name)
+      );
+
+      expect(name.textContent).toBe(survivor.data.name);
+    });
+
+    it('should show the survivor age', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
+
+      const { getByText } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
+
+      const age = await waitForElement(
+        () => getByText(survivor.data.age)
+      );
+
+      expect(age.textContent).toBe(survivor.data.age);
+    });
+
+    it('should show the survivor gender', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
+
+      const { getByText } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
+
+      const gender = await waitForElement(
+        () => getByText(survivor.data.gender)
+      );
+
+      expect(gender.textContent).toBe(survivor.data.gender);
+    });
+
+    it('should show the survivor location', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
+
+      const { getByText } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
+
+      const location = await waitForElement(
+        () => getByText(survivor.data.lonlat)
+      );
+
+      expect(location.textContent).toBe(survivor.data.lonlat);
+    });
+
+    it('should show the survivor infection status', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
+
+      const { getByText } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
+
+      const infected = await waitForElement(
+        () => getByText(
+          infectedStatusToString(survivor.data.infected)
+        )
+      );
+
+      expect(infected.textContent).toBe(
+        infectedStatusToString(survivor.data.infected)
+      );
+    });
   });
 
-  describe('render with correct values', () => {
-    const survivorFactory = props => ({
-      location: faker.random.word(),
-      name: faker.name.findName(),
-      age: faker.random.number(70).toString(),
-      gender: Math.random() > 0.5 ? 'F' : 'M',
-      lonlat: '',
-      infected: false,
-      ...props
-    });
+  describe('when click on profile button', () => {
+    it('should redirect to profile page', async () => {
+      const survivor = getSurvivorFactory();
+      const history = createMemoryHistory();
 
-    it('should show name value', () => {
-      const props = survivorFactory();
-      const wrapper = shallow(<Row survivor={props} />);
-      const tdText = wrapper.find('td').at(0).text();
-      
-      expect(tdText).toBe(props.name);
-    });
+      const { getByTestId } = render(
+        <Router history={history}>
+          <Row survivor={survivor.data} />
+        </Router>
+      );
 
-    it('should show age value', () => {
-      const props = survivorFactory();
-      const wrapper = shallow(<Row survivor={props} />);
-      const tdText = wrapper.find('td').at(1).text();
-      
-      expect(tdText).toBe(props.age);
-    });
+      const profileButton = await waitForElement(
+        () => getByTestId('profile-button')
+      );
 
-    it('should show gender value', () => {
-      const props = survivorFactory();
-      const wrapper = shallow(<Row survivor={props} />);
-      const tdText = wrapper.find('td').at(2).text();
-      
-      expect(tdText).toBe(props.gender);
-    });
+      fireEvent.click(profileButton);
 
-    it('should show age value', () => {
-      const props = survivorFactory();
-      const wrapper = shallow(<Row survivor={props} />);
-      const tdText = wrapper.find('td').at(3).text();
-      
-      expect(tdText).toBe(props.lonlat);
-    });
-
-    it('should show infected value', () => {
-      const props = survivorFactory();
-      const wrapper = shallow(<Row survivor={props} />);
-      const tdText = wrapper.find('td').at(4).text();
-      
-      expect(tdText).toBe('False');
+      expect(history.location.pathname).toBe(
+        '/profile/' + extractProfileId(survivor.data.location)
+      );
     });
   });
 });

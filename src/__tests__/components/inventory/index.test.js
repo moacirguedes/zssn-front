@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { inventoryFactory } from '../../factories/survivorFactory';
 
 describe('<Inventory />', () => {
-  it('should show the amount of fiji water', async () => {
+  it('should show the amount of an item', async () => {
     const inventory = inventoryFactory('fijiWater');
 
     const { getByTestId } = render(
@@ -19,45 +19,17 @@ describe('<Inventory />', () => {
     );
   });
 
-  it('should show the amount of campbell soup', async () => {
-    const inventory = inventoryFactory('campbellSoup');
+  describe('when "showInput" is passed on props', () => {
+    it('should show input', async () => {
+      const inventory = inventoryFactory('fijiWater');
 
-    const { getByTestId } = render(
-      <Inventory inventory={inventory} />
-    );
+      const { getByTestId, debug } = render(
+        <Inventory inventory={inventory} showInput keys={[]} />
+      );
 
-    const campbellSoupLabel = await waitForElement(() => getByTestId('campbellSoup'));
+      const itemInput = await waitForElement(() => getByTestId(inventory[0].location));
 
-    expect(campbellSoupLabel).toHaveTextContent(
-      `${inventory[0].item.name}: ${inventory[0].quantity}`
-    );
-  });
-
-  it('should show the amount of first aid pouch', async () => {
-    const inventory = inventoryFactory('firstAidPouch');
-
-    const { getByTestId } = render(
-      <Inventory inventory={inventory} />
-    );
-
-    const firstAidPouchLabel = await waitForElement(() => getByTestId('firstAidPouch'));
-
-    expect(firstAidPouchLabel).toHaveTextContent(
-      `${inventory[0].item.name}: ${inventory[0].quantity}`
-    );
-  });
-
-  it('should show the amount of ak47', async () => {
-    const inventory = inventoryFactory('ak47');
-
-    const { getByTestId } = render(
-      <Inventory inventory={inventory} />
-    );
-
-    const ak47Label = await waitForElement(() => getByTestId('ak47'));
-
-    expect(ak47Label).toHaveTextContent(
-      `${inventory[0].item.name}: ${inventory[0].quantity}`
-    );
+      expect(itemInput).toBeInTheDocument();
+    });
   });
 });

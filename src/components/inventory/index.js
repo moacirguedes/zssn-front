@@ -11,7 +11,7 @@ const Inventory = ({ inventory, showInput, handleChange, keys }) => {
 
   return (
     inventory.map(item =>
-      <div key={item.location}>
+      <div className="InventoryDiv" key={item.location}>
         <label
           htmlFor={item.location}
           data-testid={item.item.name}
@@ -20,6 +20,7 @@ const Inventory = ({ inventory, showInput, handleChange, keys }) => {
         </label>
         {showInput &&
           <input
+            data-testid={item.location}
             id={item.location}
             type="number"
             max={item.quantity}
