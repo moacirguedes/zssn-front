@@ -1,15 +1,11 @@
 import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { extractProfileId, infectedStatusToString } from '../../model/survivor';
+import { extractProfileId, infectedStatusToString, infectionClass } from '../../model/survivor';
 
 const Row = ({ survivor }) =>
   <tr
-    className={
-      survivor.infected ?
-        'Table__row-infected' :
-        'Table__row-noninfected'
-    }
+    className={`Table__row${infectionClass(survivor.infected)}`}
     data-testid="table-row"
   >
     <td className="Table__cell">{survivor.name}</td>

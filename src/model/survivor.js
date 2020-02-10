@@ -5,6 +5,8 @@ const serializeItens = (itens) =>
 
 export const infectedStatusToString = (infected) => infected ? 'True' : 'False'
 
+export const infectionClass = (infected) => infected ? '--infected' : ''
+
 export const extractProfileId = (location) =>
   location.substring(location.lastIndexOf('/') + 1);
 
