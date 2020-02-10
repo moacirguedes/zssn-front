@@ -1,92 +1,59 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Reports from '../../../pages/reports';
-import faker from 'faker';
+import { render, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import * as SurvivorModel from '../../../model/survivor';
+import { getReportFactory } from '../../factories/survivorFactory';
 
 describe('<Reports />', () => {
-  it('should render correctly', () => {
-    const wrapper = shallow(<Reports />);
+  it('should show total points lost', async () => {
+    const response = getReportFactory('total_points_lost');
 
-    expect(wrapper).toMatchSnapshot();
+    SurvivorModel.getReportInfectedPoints =
+      jest.fn().mockReturnValue(response);
+
+    const { findByTestId } = render(<Reports />);
+
+    const label = await waitForElement(
+      () => findByTestId('total-poins-lost')
+    );
+
+    expect(label).toHaveTextContent(response.data.report.total_points_lost);
   });
 
-  describe('when component load', () => {
-    it('should load infecteds report', () => {
-      const spyloadReportInfecteds = jest.spyOn(Reports.prototype, 'loadReportInfecteds');
-      shallow(<Reports />);
+  it('should show average itens per person', async () => {
+    const response = getReportFactory('average_items_quantity_per_person');
 
-      expect(spyloadReportInfecteds).toHaveBeenCalled();
-    });
+    SurvivorModel.getReportPeopleInventory =
+      jest.fn().mockReturnValue(response);
 
-    it('should load non infecteds report', () => {
-      const spyloadReportNonInfecteds = jest.spyOn(Reports.prototype, 'loadReportNonInfecteds');
-      shallow(<Reports />);
+    const { findByTestId, debug } = render(<Reports />);
 
-      expect(spyloadReportNonInfecteds).toHaveBeenCalled();
-    });
+    const label = await waitForElement(
+      () => findByTestId('avg-itens-per-person')
+    );
+    
+    debug(label)
 
-    it('should load infected points report', () => {
-      const spyloadReportInfectedPoints = jest.spyOn(Reports.prototype, 'loadReportInfectedPoints');
-      shallow(<Reports />);
-
-      expect(spyloadReportInfectedPoints).toHaveBeenCalled();
-    });
-
-    it('should load people inventory report', () => {
-      const spyloadReportPeopleInventory = jest.spyOn(Reports.prototype, 'loadReportPeopleInventory');
-      shallow(<Reports />);
-
-      expect(spyloadReportPeopleInventory).toHaveBeenCalled();
-    });
+    expect(label).toHaveTextContent(
+      'Total: ' + response.data.report.average_items_quantity_per_person
+    );
   });
 
-  describe('after component load', () => {
-    it('should show points lost', () => {
-      const wrapper = shallow(<Reports />);
-      
-      const infectedPoints = {
-        total_points_lost: faker.random.number()
-      }
+  it('should show average itens per healthy person', async () => {
+    const response = getReportFactory('average_items_quantity_per_healthy_person');
 
-      wrapper.setState({
-        infectedPoints: infectedPoints
-      });
+    SurvivorModel.getReportPeopleInventory =
+      jest.fn().mockReturnValue(response);
 
-      const label = wrapper.find('[data-id="totalPointsLost"]').text();
+    const { findByTestId } = render(<Reports />);
 
-      expect(label).toContain(infectedPoints.total_points_lost);
-    });
+    const label = await waitForElement(
+      () => findByTestId('avg-itens-per-healthy-person')
+    );
 
-    it('should show average itens per person', () => {
-      const wrapper = shallow(<Reports />);
-
-      const peopleInventory = {
-        average_items_quantity_per_person: faker.random.number()
-      }
-
-      wrapper.setState({
-        peopleInventory: peopleInventory
-      });
-
-      const itensPerPerson = wrapper.find('[data-id="avgItensPerPerson"]').text();
-
-      expect(itensPerPerson).toContain(peopleInventory.average_items_quantity_per_person);
-    });
-
-    it('should show average itens per healthy person', () => {
-      const wrapper = shallow(<Reports />);
-
-      const peopleInventory = {
-        average_items_quantity_per_healthy_person: faker.random.number()
-      }
-
-      wrapper.setState({
-        peopleInventory: peopleInventory
-      });
-
-      const itensPerHealthyPerson = wrapper.find('[data-id="avgItensPerHealthyPerson"]').text();
-
-      expect(itensPerHealthyPerson).toContain(peopleInventory.average_items_quantity_per_healthy_person);
-    });
+    expect(label).toHaveTextContent(
+      'Non-infected: ' + response.data.report.average_items_quantity_per_healthy_person
+    );
   });
 });

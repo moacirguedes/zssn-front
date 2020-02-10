@@ -15,6 +15,16 @@ export const getSurvivorFactory = (props) => ({
   status: StatusCode.OK_STATUS
 });
 
+export const getReportFactory = (report) => ({
+  data: {
+    report: {
+      description: faker.random.word(),
+      [report]: faker.random.number()
+    }
+  },
+  status: StatusCode.OK_STATUS
+});
+
 export const inventoryFactory = (item) => [{
   location: faker.random.uuid(),
   quantity: faker.random.number(90),
