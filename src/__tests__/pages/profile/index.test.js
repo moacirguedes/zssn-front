@@ -1,93 +1,138 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Profile from '../../../pages/profile';
-import faker from 'faker';
+import * as SurvivorModel from '../../../model/survivor';
+import { getSurvivorFactory } from '../../factories/survivorFactory';
+import { render, waitForElement, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 describe('<Profile />', () => {
-  const survivorFactory = props => ({
-    location: faker.random.word(),
-    name: faker.name.findName(),
-    age: faker.random.number(70).toString(),
-    gender: Math.random() > 0.5 ? 'F' : 'M',
-    lonlat: '',
-    infected: Math.random() > 0.5 ? true : false,
-    ...props
-  });
-
   it('should render correctly', () => {
-    const wrapper = shallow(<Profile />);
+    const history = createMemoryHistory();
 
-    expect(wrapper).toMatchSnapshot();
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const element = getByTestId('survivor-profile');
+
+    expect(element).toBeInTheDocument();
   });
 
-  describe('call the api', () => {
-    it('should load survivor profile', () => {
-      const loadSurvivorMock = jest.spyOn(Profile.prototype, 'loadSurvivor');
-      shallow(<Profile />);
+  it('should show the name of the survivor', async () => {
+    const survivor = getSurvivorFactory();
 
-      expect(loadSurvivorMock).toHaveBeenCalled();
-    });
+    SurvivorModel.getSurvivor =
+      jest.fn().mockReturnValue(survivor);
 
-    it('should load survivor inventory', () => {
-      const loadInventoryMock = jest.spyOn(Profile.prototype, 'loadInventory');
-      shallow(<Profile />);
+    const history = createMemoryHistory();
 
-      expect(loadInventoryMock).toHaveBeenCalled();
-    });
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const nameLabel = await waitForElement(() => getByTestId('name'));
+
+    expect(nameLabel).toHaveTextContent(survivor.data.name);
   });
 
-  it('should show the name', () => {
-    const survivor = survivorFactory();
-    const wrapper = shallow(<Profile />);
+  it('should show the age of the survivor', async () => {
+    const survivor = getSurvivorFactory();
 
-    wrapper.setState({
-      survivor: survivor
-    });
+    SurvivorModel.getSurvivor =
+      jest.fn().mockReturnValue(survivor);
 
-    expect(wrapper.find('[data-id="name"]').text()).toBe(survivor.name);
+    const history = createMemoryHistory();
+
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const ageLabel = await waitForElement(() => getByTestId('age'));
+
+    expect(ageLabel).toHaveTextContent(survivor.data.age);
   });
 
-  it('should show the age', () => {
-    const survivor = survivorFactory();
-    const wrapper = shallow(<Profile />);
+  it('should show the gender of the survivor', async () => {
+    const survivor = getSurvivorFactory();
 
-    wrapper.setState({
-      survivor: survivor
-    });
+    SurvivorModel.getSurvivor =
+      jest.fn().mockReturnValue(survivor);
 
-    expect(wrapper.find('[data-id="age"]').text()).toContain(survivor.age);
+    const history = createMemoryHistory();
+
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const genderLabel = await waitForElement(() => getByTestId('gender'));
+
+    expect(genderLabel).toHaveTextContent(survivor.data.gender);
   });
 
-  it('should show the gender', () => {
-    const survivor = survivorFactory();
-    const wrapper = shallow(<Profile />);
+  it('should show the location of the survivor', async () => {
+    const survivor = getSurvivorFactory();
 
-    wrapper.setState({
-      survivor: survivor
-    });
+    SurvivorModel.getSurvivor =
+      jest.fn().mockReturnValue(survivor);
 
-    expect(wrapper.find('[data-id="gender"]').text()).toContain(survivor.gender);
+    const history = createMemoryHistory();
+
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const lonlatLabel = await waitForElement(() => getByTestId('lonlat'));
+
+    expect(lonlatLabel).toHaveTextContent(survivor.data.lonlat);
   });
 
-  it('should show the location', () => {
-    const survivor = survivorFactory();
-    const wrapper = shallow(<Profile />);
+  it('should show infection status', async () => {
+    const survivor = getSurvivorFactory();
 
-    wrapper.setState({
-      survivor: survivor
-    });
+    SurvivorModel.getSurvivor =
+      jest.fn().mockReturnValue(survivor);
 
-    expect(wrapper.find('[data-id="lonlat"]').text()).toContain(survivor.lonlat);
+    const history = createMemoryHistory();
+
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Profile match={{ params: { id: 1 } }} />
+      </Router>
+    );
+
+    const infectedLabel = await waitForElement(() => getByTestId('infected'));
+
+    expect(infectedLabel).toHaveTextContent(
+      'Infected: ' + SurvivorModel.infectedStatusToString(survivor.data.infected)
+    );
   });
 
-  it('should show infection status', () => {
-    const survivor = survivorFactory();
-    const wrapper = shallow(<Profile />);
+  describe('when click on update button', () => {
+    it('should redirect to update page', () => {
+      const history = createMemoryHistory();
 
-    wrapper.setState({
-      survivor: survivor
+      const { getByTestId } = render(
+        <Router history={history}>
+          <Profile match={{ params: { id: 1 } }} />
+        </Router>
+      );
+
+      const reportsButton = getByTestId('update-button');
+      fireEvent.click(reportsButton);
+
+      expect(history.location.pathname).toBe('/profile/1/update');
     });
-
-    expect(wrapper.find('[data-id="infected"]').text()).toContain(survivor.lonlat);
   });
 });

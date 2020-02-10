@@ -4,14 +4,14 @@
   padding: 8px;
 }
 
-.Table_cell--center {
+.Table__cell--center {
   text-align: center;
 }
 
-.Table__row-infected {
+.Table__row--infected {
   background-color: rgb(255, 160, 160);
 }
 
-.Table__row-noninfected {
+.Table__row {
   background-color: #f6f6f6;
 }

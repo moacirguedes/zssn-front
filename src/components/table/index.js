@@ -4,7 +4,7 @@ import Row from '../row';
 
 const Table = ({ survivors }) =>
 
-  <div className="TableSize">
+  <div className="TableSize" data-testid="survivors-table">
     <table className="Table">
       <thead>
         <tr className="Table__header-item">

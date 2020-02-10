@@ -1,18 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Main from '../../../pages/main';
+import * as SurvivorModel from '../../../model/survivor';
+import { getSurvivorsFactory } from '../../factories/survivorFactory';
+import { render, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 describe('<Main/>', () => {
-  it('should render correctly', () => {
-    const wrapper = shallow(<Main />);
+  it('should render the table', async () => {
+    SurvivorModel.getSurvivors =
+      jest.fn().mockReturnValue(getSurvivorsFactory());
 
-    expect(wrapper).toMatchSnapshot();
-  });
+    const history = createMemoryHistory();
 
-  it('should load survivors', () => {
-    const spyLoadSurvivors = jest.spyOn(Main.prototype, 'loadSurvivors');
-    shallow(<Main />);
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Main />
+      </Router>
+    );
 
-    expect(spyLoadSurvivors).toHaveBeenCalled();
+    const table = await waitForElement(
+      () => getByTestId('survivors-table')
+    );
+
+    expect(table).toBeInTheDocument();
   });
 });

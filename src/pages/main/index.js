@@ -3,6 +3,7 @@ import './styles.css';
 import { getSurvivors } from '../../model/survivor';
 import Table from '../../components/table';
 import { StatusCode } from '../../services/httpService';
+import isEmpty from 'lodash.isempty';
 
 export default class Main extends Component {
   state = {
@@ -21,7 +22,7 @@ export default class Main extends Component {
         survivors: response.data
       });
     }
-    else{
+    else {
       alert('Failed to load survivors');
     }
   }
@@ -29,10 +30,12 @@ export default class Main extends Component {
   render() {
     const { survivors } = this.state;
 
-    return (
-      survivors.length === 0 ?
-        <div className="Loader"></div> :
-        <Table survivors={survivors} />
-    );
+    return isEmpty(survivors) ? (
+      <div className="Loader"></div>
+    ) : (
+        <Table
+          survivors={survivors}
+        />
+      )
   }
 }

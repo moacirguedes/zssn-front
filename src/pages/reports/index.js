@@ -71,7 +71,11 @@ export default class Reports extends Component {
 
     return (
       <>
-        <PieChart width={350} height={350}>
+        <PieChart
+          width={350}
+          height={350}
+          data-testid="pie-chart"
+        >
           <Pie
             data={chartData}
             cx="50%"
@@ -93,7 +97,7 @@ export default class Reports extends Component {
             {infectedPoints.description}
           </h4>
 
-          <label data-id="totalPointsLost">
+          <label data-testid="total-poins-lost">
             {infectedPoints.total_points_lost}
           </label>
         </div>
@@ -102,11 +106,11 @@ export default class Reports extends Component {
             {peopleInventory.description}
           </h4>
 
-          <label data-id="avgItensPerPerson">
+          <label data-testid="avg-itens-per-person">
             Total: {peopleInventory.average_items_quantity_per_person}
           </label>
 
-          <label data-id="avgItensPerHealthyPerson">
+          <label data-testid="avg-itens-per-healthy-person">
             Non-infected: {peopleInventory.average_items_quantity_per_healthy_person}
           </label>
         </div>

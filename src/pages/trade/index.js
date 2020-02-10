@@ -32,7 +32,7 @@ export default class Trade extends Component {
         survivors: response.data
       });
     }
-    else{
+    else {
       alert('Failed to load survivors');
     }
   }
@@ -77,13 +77,13 @@ export default class Trade extends Component {
   }
 
   render() {
-    const { 
-      survivors, 
-      firstSurvivor, 
-      secondSurvivor, 
-      firstInventory, 
-      secondInventory, 
-      secondSurvivorName 
+    const {
+      survivors,
+      firstSurvivor,
+      secondSurvivor,
+      firstInventory,
+      secondInventory,
+      secondSurvivorName
     } = this.state;
 
     return (
