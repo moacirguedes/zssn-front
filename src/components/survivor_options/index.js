@@ -11,6 +11,7 @@ const SurvivorOptions = ({ survivors }) =>
         <option
           key={survivor.location}
           value={extractProfileId(survivor.location)}
+          data-testid="survivor-option"
         >
           {survivor.name}
         </option>

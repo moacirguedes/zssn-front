@@ -23,7 +23,7 @@ describe('<Inventory />', () => {
     it('should show input', async () => {
       const inventory = inventoryFactory('fijiWater');
 
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <Inventory inventory={inventory} showInput keys={[]} />
       );
 
