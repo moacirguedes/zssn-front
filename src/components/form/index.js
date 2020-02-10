@@ -4,6 +4,7 @@ import './style.css';
 const Form = (props) =>
   <form
     className="Form"
+    data-testid="new-survivor-form"
     onSubmit={props.handleSubmit}
   >
     <label htmlFor="name" className="CreateLabel">Name</label>
