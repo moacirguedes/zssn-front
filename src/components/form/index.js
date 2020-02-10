@@ -64,58 +64,58 @@ const Form = (props) =>
 
     <div className="Inline height140">
       <div className="ItensDiv">
-        <label htmlFor="water" className="CreateLabel">Fiji Water</label>
+        <label htmlFor="fijiWater" className="CreateLabel">Fiji Water</label>
 
         <input
-          id="water"
+          id="fijiWater"
           className="CreateItemInput"
           type="number"
           min="0"
           required
-          value={props.water}
+          value={props.fijiWater}
           onChange={props.handleChange}
-          name="water"
+          name="fijiWater"
         />
 
-        <label htmlFor="food" className="CreateLabel">Campbell Soup</label>
+        <label htmlFor="campbellSoup" className="CreateLabel">Campbell Soup</label>
 
         <input
-          id="food"
+          id="campbellSoup"
           className="CreateItemInput"
           type="number"
           min="0"
           required
-          value={props.food}
+          value={props.campbellSoup}
           onChange={props.handleChange}
-          name="food"
+          name="campbellSoup"
         />
       </div>
 
       <div className="ItensDiv">
-        <label htmlFor="medication" className="CreateLabel">First Aid Pouch</label>
+        <label htmlFor="firstAidPouch" className="CreateLabel">First Aid Pouch</label>
 
         <input
-          id="medication"
+          id="firstAidPouch"
           className="CreateItemInput"
           type="number"
           min="0"
           required
-          value={props.medication}
+          value={props.firstAidPouch}
           onChange={props.handleChange}
-          name="medication"
+          name="firstAidPouch"
         />
 
-        <label htmlFor="ammunition" className="CreateLabel">AK47</label>
+        <label htmlFor="ak47" className="CreateLabel">AK47</label>
   
         <input
-          id="ammunition"
+          id="ak47"
           className="CreateItemInput"
           type="number"
           min="0"
           required
-          value={props.ammunition}
+          value={props.ak47}
           onChange={props.handleChange}
-          name="ammunition"
+          name="ak47"
         />
       </div>
     </div>
